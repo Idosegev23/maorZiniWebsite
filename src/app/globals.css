@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@layer base {
+  html {
+    direction: rtl;
+    font-family: 'Heebo', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-brandGray;
+    font-family: 'Heebo', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heebo font-bold text-brandBlue;
+  }
+  
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  section {
+    @apply py-10 md:py-16;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-brandGold text-white hover:bg-opacity-90;
+  }
+  
+  .btn-secondary {
+    @apply bg-brandBlue text-white hover:bg-opacity-90;
+  }
+  
+  .btn-outline {
+    @apply border border-brandGold text-brandGold hover:bg-brandGold hover:text-white;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-brandBlue mb-6 md:mb-10;
+  }
+
+  /* Testimonials Styles */
+  .qs-item {
+    @apply relative z-10 h-full;
+  }
+  
+  .qs-item_inner {
+    @apply shadow-lg rounded-2xl bg-white h-full;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid rgba(27, 42, 78, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .qs-item_inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  }
+  
+  .qs-item_inner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(192, 161, 107, 0.1), transparent 70%);
+    border-bottom-left-radius: 100%;
+  }
+  
+  .qs-item_inner .text-4xl {
+    @apply text-brandGold;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 4rem;
+    line-height: 1;
+    opacity: 0.2;
+  }
+  
+  .qs-item_inner .text {
+    @apply text-lg text-brandGray flex-grow;
+    position: relative;
+    z-index: 1;
+    padding-top: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .qs-item_inner .text p {
+    @apply mb-4 last:mb-0;
+  }
+  
+  .qs-item_inner .title {
+    @apply font-bold text-brandBlue text-right;
+    position: relative;
+    padding-top: 1rem;
+    margin-top: auto;
+    font-size: 1.1rem;
+  }
+  
+  .qs-item_inner .title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 2px;
+    background-color: rgba(192, 161, 107, 0.5);
+  }
+  
+  .qs-item_inner .subtitle {
+    @apply text-sm text-brandGray text-right;
+  }
+
+  /* אנימציות */
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slideUp {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .animate-scaleIn {
+    animation: scaleIn 0.3s ease-out;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Media queries להתאמת רכיבים ספציפיים למובייל */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+  
+  /* התאמת טפסים למובייל */
+  input, select, textarea {
+    @apply text-base py-2.5;
+  }
+  
+  /* התאמת לחצנים למובייל */
+  button, .btn {
+    @apply text-sm py-2.5;
+  }
+}
+
+/* מונע גלישה אופקית במובייל */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* טבלאות מותאמות למובייל */
+table {
+  @apply font-bold text-brandBlue text-right;
+}
+
+@media (max-width: 640px) {
+  table {
+    @apply text-sm;
+  }
+}
+
+/* הגדרות אנימציות */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
