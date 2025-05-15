@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Button from '@/components/common/Button';
 import InsurancePopup from '@/components/common/InsurancePopup';
+import { Plane } from 'lucide-react';
 
 const TravelInsuranceActions = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -33,10 +34,20 @@ const TravelInsuranceActions = () => {
 
         <button
           onClick={openPopup}
-          className="text-lg py-4 px-8 bg-brandBlue text-white border-2 border-brandBlue hover:bg-transparent hover:text-brandBlue shadow-lg rounded-lg transition-colors"
+          className="
+            md:w-16 md:h-16 md:rounded-full md:p-0 md:flex md:items-center md:justify-center md:relative
+            md:group md:transition-all md:hover:w-60 md:overflow-hidden
+            text-lg py-4 px-8 bg-brandBlue text-white border-2 border-brandBlue hover:bg-transparent hover:text-brandBlue shadow-lg rounded-lg transition-colors
+          "
           aria-label="רכישת ביטוח נסיעות לחו״ל"
         >
-          רכישת ביטוח נסיעות לחו״ל
+          <Plane className="md:text-brandGold md:w-6 md:h-6 md:block hidden" />
+          <span className="md:absolute md:whitespace-nowrap md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-300">
+            רכישת ביטוח נסיעות לחו״ל
+          </span>
+          <span className="md:hidden">
+            רכישת ביטוח נסיעות לחו״ל
+          </span>
         </button>
       </div>
 

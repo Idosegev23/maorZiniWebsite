@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import "./globals.css";
+import Navigation from "../components/common/Navigation";
 
 export const metadata: Metadata = {
   title: "מאור זיני – ביטוח ופיננסים | יועץ פיננסי ופנסיוני מוסמך",
@@ -16,31 +18,8 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <body className="font-heebo antialiased">
         <header className="bg-white shadow-sm py-4 sticky top-0 z-50">
-          <div className="container flex justify-between items-center">
-            <a href="/" className="flex items-center">
-              <Image 
-                src="/logo.png" 
-                alt="מאור זיני - ביטוח ופיננסים" 
-                width={150} 
-                height={50} 
-                className="h-auto" 
-              />
-            </a>
-            <nav className="hidden md:flex space-x-reverse space-x-8">
-              <a href="/" className="text-brandGray hover:text-brandBlue font-medium">דף הבית</a>
-              <a href="/about" className="text-brandGray hover:text-brandBlue font-medium">אודות</a>
-              <a href="/services" className="text-brandGray hover:text-brandBlue font-medium">שירותים</a>
-              <a href="/tools" className="text-brandGray hover:text-brandBlue font-medium">כלים</a>
-              <a href="/magazine" className="text-brandGray hover:text-brandBlue font-medium">מגזין</a>
-              <a href="/contact" className="text-brandGray hover:text-brandBlue font-medium">צור קשר</a>
-            </nav>
-            <div className="md:hidden">
-              <button aria-label="תפריט" className="text-brandBlue">
-                <span className="block w-6 h-0.5 bg-brandBlue mb-1.5"></span>
-                <span className="block w-6 h-0.5 bg-brandBlue mb-1.5"></span>
-                <span className="block w-6 h-0.5 bg-brandBlue"></span>
-              </button>
-            </div>
+          <div className="container">
+            <Navigation />
           </div>
         </header>
         
@@ -59,10 +38,10 @@ export default function RootLayout({
               <div>
                 <h3 className="text-xl font-bold text-white mb-4">מידע נוסף</h3>
                 <ul className="space-y-2">
-                  <li><a href="/about" className="hover:text-brandGold">אודות</a></li>
-                  <li><a href="/services" className="hover:text-brandGold">שירותים</a></li>
-                  <li><a href="/magazine" className="hover:text-brandGold">מגזין</a></li>
-                  <li><a href="/contact" className="hover:text-brandGold">צור קשר</a></li>
+                  <li><Link href="/about" className="hover:text-brandGold">אודות</Link></li>
+                  <li><Link href="/services" className="hover:text-brandGold">שירותים</Link></li>
+                  <li><Link href="/magazine" className="hover:text-brandGold">מגזין</Link></li>
+                  <li><Link href="/contact" className="hover:text-brandGold">צור קשר</Link></li>
                 </ul>
               </div>
               <div>
