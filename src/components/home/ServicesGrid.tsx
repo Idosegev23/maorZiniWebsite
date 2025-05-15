@@ -38,28 +38,28 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, href, ima
 
 const services = [
   {
-    title: 'ביטוח חיים ובריאות',
-    description: 'הגנה מותאמת אישית מול מצבים רפואיים מורכבים או אובדן כושר עבודה',
-    href: '/services/life-health',
+    title: 'ביטוח חיים',
+    description: 'ביטוח חיים נועד להבטיח שהיקרים לך יוכלו להמשיך את חייהם ברווחה כלכלית גם במקרה של אובדן פתאומי',
+    href: '/services/life-insurance',
+    imageSrc: '/services/lifeins.jpg'
+  },
+  {
+    title: 'ביטוח בריאות',
+    description: 'ביטוח בריאות פרטי מעניק לך גישה לרופאים מומחים, טיפולים מתקדמים ותרופות שאינן כלולות בסל הבריאות',
+    href: '/services/health-insurance',
     imageSrc: '/services/healthins.jpg'
   },
   {
     title: 'תכנון פנסיוני',
-    description: 'הכוונה מקצועית בקרנות פנסיה, תיקון 190, קצבה והיערכות לפרישה',
-    href: '/services/pension',
+    description: 'תכנון נכון של הפנסיה מבטיח עתיד כלכלי בטוח. בחירת קרן מתאימה, בדיקת דמי ניהול והתאמת מסלול השקעה',
+    href: '/services/pension-planning',
     imageSrc: '/services/pension.jpg'
   },
   {
-    title: 'ביטוח סיעודי ואובדן כושר עבודה',
-    description: 'תמיכה כלכלית במצבי בריאות מתמשכים או פגיעה בפרנסה',
-    href: '/services/disability',
-    imageSrc: '/services/lostworkins.jpg'
-  },
-  {
-    title: 'חיסכון והשקעה חכמה',
-    description: 'בניית חיסכון גמיש – קרן השתלמות, גמל להשקעה, קופת גמל ותכנון מס',
-    href: '/services/savings',
-    imageSrc: '/services/investment.jpg'
+    title: 'קופת גמל להשקעה',
+    description: 'פתרון חיסכון גמיש המאפשר הפקדות שוטפות או חד-פעמיות, עם אפשרות למשיכה בכל עת',
+    href: '/services/investment-provident-fund',
+    imageSrc: '/services/gemel.jpg'
   },
 ];
 

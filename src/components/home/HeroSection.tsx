@@ -15,8 +15,8 @@ const HeroSection = () => {
               <Image
                 src="/maorfull.png"
                 alt="מאור זיני"
-                width={250}
-                height={300}
+                width={400}
+                height={450}
                 className="rounded-2xl h-auto mx-auto object-contain animate-scaleIn"
                 priority
               />
@@ -26,7 +26,7 @@ const HeroSection = () => {
           {/* תוכן טקסט */}
           <div className="md:order-2 order-1 text-right space-y-5 md:space-y-6 animate-slideUp">
             <div>
-              <span className="inline-block text-brandGold border-b border-brandGold/30 pb-1 mb-1">יועצת ביטוח ופיננסים</span>
+              <span className="inline-block text-brandGold border-b border-brandGold/30 pb-1 mb-1">מנהלת תיקי לקוחות ביטוח ופיננסים</span>
             </div>
             
             <div className="space-y-2">
@@ -37,7 +37,7 @@ const HeroSection = () => {
               
               <p className="text-lg md:text-xl text-brandGray mt-3 md:mt-4">
                 <span className="inline-block border-r-2 border-brandGold/60 pr-3">
-                  ליווי אישי וייעוץ מקצועי מאת מאור זיני
+                  ליווי אישי וניהול מקצועי מאת מאור זיני
                   <br />
                   <span className="text-brandGold/90">יותר מ־15 שנות ניסיון בתחום</span>
                 </span>
