@@ -13,7 +13,7 @@ const HeroSection = () => {
           <div className="md:order-1 order-2 relative overflow-hidden">
             <div className="relative flex justify-center items-center">
               <Image
-                src="/maorfull.jpg"
+                src="/maorfull.png"
                 alt="מאור זיני"
                 width={250}
                 height={300}
