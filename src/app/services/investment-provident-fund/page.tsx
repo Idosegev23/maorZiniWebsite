@@ -57,7 +57,7 @@ const InvestmentProvidentFundPage = () => {
               <h2 className="text-2xl font-bold text-brandBlue mt-10 mb-6">יתרונות מרכזיים</h2>
               
               <ul className="list-disc list-inside space-y-2 mr-4 mb-8">
-                <li>הפקדה של עד מנהלת תיקי לקוחות ₪ בשנה (לכל אזרח מגיל 0)</li>
+                <li>הפקדה של עד 81,000 ₪ בשנה (לכל אזרח מגיל 0)</li>
                 <li>נזילות מלאה – ניתן למשוך את הכסף בכל זמן</li>
                 <li>אפשרות להמרת החיסכון לקצבה פנסיונית ללא תשלום מס</li>
                 <li>ניהול השקעות מקצועי במגוון מסלולים – לבחירה חופשית</li>
