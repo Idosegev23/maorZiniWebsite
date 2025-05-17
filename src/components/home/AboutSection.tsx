@@ -9,7 +9,7 @@ const AboutSection = () => {
         <div className="max-w-3xl mx-auto animate-fadeIn">
           <SectionTitle
             title="מי אני?"
-            subtitle="מנהלת תיקי לקוחות ביטוח ופיננסים מנוסה לשירותך"
+            subtitle="מנהלת תכנון פנסיוני, פיננסים וביטוחים מנוסה לשירותך"
             showUnderline
             rightAligned
             boldSubtitle
