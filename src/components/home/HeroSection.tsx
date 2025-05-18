@@ -15,8 +15,8 @@ const HeroSection = () => {
               <Image
                 src="/maorfull.png"
                 alt="מאור זיני"
-                width={400}
-                height={450}
+                width={300}
+                height={250}
                 className="rounded-2xl h-auto mx-auto object-contain animate-scaleIn"
                 priority
               />
