@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { Moon, Sun, ZoomIn, ZoomOut, Link, X, MousePointer2 } from 'lucide-react';
 
