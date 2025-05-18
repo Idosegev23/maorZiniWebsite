@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import Navigation from "../components/common/Navigation";
+import AccessibilityWidget from "../components/accessibility/AccessibilityWidget";
 
 export const metadata: Metadata = {
   title: "מאור זיני – ביטוח ופיננסים | יועץ פיננסי ופנסיוני מוסמך",
@@ -16,14 +17,73 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="he" dir="rtl">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#1b2a4e" />
+        <meta name="color-scheme" content="light" />
+        <meta name="robots" content="index, follow" />
+        
+        {/* תגיות נגישות */}
+        <meta name="accessibility-control" content="fullKeyboardControl" />
+        <link rel="alternate" href="/accessibility" hrefLang="he" title="הצהרת נגישות" />
+        
+        {/* סקריפט לטעינה אלטרנטיבית של תכונות נגישות אם ג'אווהסקריפט כבוי */}
+        <noscript>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .focus-visible {
+              outline: 3px solid #2563eb !important;
+              outline-offset: 2px !important;
+            }
+            /* סגנונות בסיסיים ללא JavaScript */
+            a:focus, button:focus, input:focus, select:focus, textarea:focus {
+              outline: 3px solid #2563eb;
+              outline-offset: 3px;
+            }
+            .skip-link {
+              display: block;
+              position: absolute;
+              top: -40px;
+              right: 0;
+              background: #2563eb;
+              color: white;
+              padding: 8px;
+              z-index: 100;
+              transition: top 0.1s ease-in;
+            }
+            .skip-link:focus {
+              top: 0;
+            }
+            /* כפתור נגישות קבוע שמופיע כאשר אין JavaScript */
+            .noscript-accessibility {
+              position: fixed;
+              bottom: 20px;
+              left: 20px;
+              display: block;
+              background: #ffffff;
+              border: 2px solid #2563eb;
+              color: #2563eb;
+              font-weight: bold;
+              padding: 15px;
+              border-radius: 30px;
+              box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+              text-decoration: none;
+            }
+          ` }} />
+        </noscript>
+      </head>
       <body className="font-heebo antialiased">
+        {/* קישור דילוג לתוכן העיקרי (נגישות) */}
+        <a href="#main-content" className="skip-link">
+          דלג לתוכן העיקרי
+        </a>
+        
         <header className="bg-white shadow-sm py-4 sticky top-0 z-50">
           <div className="container">
             <Navigation />
           </div>
         </header>
         
-        <main>
+        <main id="main-content">
           {children}
         </main>
         
@@ -42,6 +102,7 @@ export default function RootLayout({
                   <li><Link href="/services" className="hover:text-brandGold">שירותים</Link></li>
                   <li><Link href="/magazine" className="hover:text-brandGold">מגזין</Link></li>
                   <li><Link href="/contact" className="hover:text-brandGold">צור קשר</Link></li>
+                  <li><Link href="/accessibility" className="hover:text-brandGold">הצהרת נגישות</Link></li>
                 </ul>
               </div>
               <div>
@@ -86,6 +147,15 @@ export default function RootLayout({
             </svg>
           </a>
         </div>
+        
+        {/* כפתור נגישות נטען רק כשאין JavaScript */}
+        <noscript>
+          <a href="/accessibility" className="noscript-accessibility">
+            אפשרויות נגישות
+          </a>
+        </noscript>
+        
+        <AccessibilityWidget />
       </body>
     </html>
   );
