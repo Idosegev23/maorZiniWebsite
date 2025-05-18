@@ -276,6 +276,58 @@ table {
   border: 2px solid #fff !important;
 }
 
+/* שיפור ניגודיות גבוהה במצב רגיל (לא חושך מלא) */
+html:not(.high-contrast) .accessibility-mode {
+  --improved-gold: #7D6322; /* גרסה כהה יותר של הזהב המותאמת לניגודיות */
+  --improved-beige: #A8A5A0; /* גרסה כהה יותר של הבז' לניגודיות */
+}
+
+html:not(.high-contrast) .accessibility-mode .text-brandGold {
+  color: var(--improved-gold) !important;
+}
+
+html:not(.high-contrast) .accessibility-mode .bg-brandGold {
+  background-color: var(--improved-gold) !important;
+}
+
+html:not(.high-contrast) .accessibility-mode .border-brandGold {
+  border-color: var(--improved-gold) !important;
+}
+
+html:not(.high-contrast) .accessibility-mode .hover\:text-brandGold:hover {
+  color: var(--improved-gold) !important;
+}
+
+html:not(.high-contrast) .accessibility-mode .hover\:bg-brandGold:hover {
+  background-color: var(--improved-gold) !important;
+}
+
+/* תיקוני ניגודיות לבז' */
+html:not(.high-contrast) .accessibility-mode .text-brandBeige {
+  color: var(--improved-beige) !important;
+}
+
+html:not(.high-contrast) .accessibility-mode .bg-brandBeige {
+  background-color: var(--improved-beige) !important;
+}
+
+html:not(.high-contrast) .accessibility-mode .border-brandBeige {
+  border-color: var(--improved-beige) !important;
+}
+
+/* שיפור ניגודיות לטקסט קטן */
+html:not(.high-contrast) .accessibility-mode .text-sm,
+html:not(.high-contrast) .accessibility-mode small,
+html:not(.high-contrast) .accessibility-mode .text-xs {
+  font-weight: 500;
+}
+
+/* כפתורים עם צבע הזהב כרקע - שיפור ניגודיות טקסט */
+html:not(.high-contrast) .accessibility-mode .bg-brandGold,
+html:not(.high-contrast) .accessibility-mode .btn-primary {
+  color: #000000 !important; /* שינוי צבע הטקסט לשחור להגברת ניגודיות על רקע הזהב */
+}
+
 /* הדגשת קישורים */
 .highlight-links a {
   text-decoration: underline !important;

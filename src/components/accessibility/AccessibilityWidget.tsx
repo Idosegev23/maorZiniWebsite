@@ -8,6 +8,7 @@ type AccessibilityState = {
   highContrast: boolean;
   highlightLinks: boolean;
   biggerCursor: boolean;
+  improvedContrast: boolean;
 };
 
 export default function AccessibilityWidget() {
@@ -16,7 +17,8 @@ export default function AccessibilityWidget() {
     fontSize: 0,
     highContrast: false,
     highlightLinks: false,
-    biggerCursor: false
+    biggerCursor: false,
+    improvedContrast: false
   });
 
   useEffect(() => {
@@ -35,6 +37,12 @@ export default function AccessibilityWidget() {
       document.documentElement.classList.add('high-contrast');
     } else {
       document.documentElement.classList.remove('high-contrast');
+    }
+    
+    if (settings.improvedContrast) {
+      document.documentElement.classList.add('accessibility-mode');
+    } else {
+      document.documentElement.classList.remove('accessibility-mode');
     }
     
     if (settings.highlightLinks) {
@@ -65,7 +73,16 @@ export default function AccessibilityWidget() {
   const toggleHighContrast = () => {
     setSettings(prev => ({
       ...prev,
-      highContrast: !prev.highContrast
+      highContrast: !prev.highContrast,
+      improvedContrast: false
+    }));
+  };
+
+  const toggleImprovedContrast = () => {
+    setSettings(prev => ({
+      ...prev,
+      improvedContrast: !prev.improvedContrast,
+      highContrast: false
     }));
   };
 
@@ -88,7 +105,8 @@ export default function AccessibilityWidget() {
       fontSize: 0,
       highContrast: false,
       highlightLinks: false,
-      biggerCursor: false
+      biggerCursor: false,
+      improvedContrast: false
     });
   };
 
@@ -141,14 +159,28 @@ export default function AccessibilityWidget() {
             
             <div>
               <button
+                onClick={toggleImprovedContrast}
+                aria-pressed={settings.improvedContrast}
+                className={`flex items-center w-full p-2 rounded ${
+                  settings.improvedContrast ? 'bg-blue-100' : 'bg-gray-100 hover:bg-gray-200'
+                }`}
+              >
+                <Sun size={20} />
+                <span className="mr-2">שיפור ניגודיות צבעים</span>
+                <span className="mr-auto">{settings.improvedContrast ? 'פעיל' : 'כבוי'}</span>
+              </button>
+            </div>
+            
+            <div>
+              <button
                 onClick={toggleHighContrast}
                 aria-pressed={settings.highContrast}
                 className={`flex items-center w-full p-2 rounded ${
                   settings.highContrast ? 'bg-blue-100' : 'bg-gray-100 hover:bg-gray-200'
                 }`}
               >
-                {settings.highContrast ? <Moon size={20} /> : <Sun size={20} />}
-                <span className="mr-2">ניגודיות גבוהה</span>
+                <Moon size={20} />
+                <span className="mr-2">ניגודיות גבוהה מלאה</span>
                 <span className="mr-auto">{settings.highContrast ? 'פעיל' : 'כבוי'}</span>
               </button>
             </div>
