@@ -26,7 +26,7 @@ const HeroSection = () => {
           {/* תוכן טקסט */}
           <div className="md:order-2 order-1 text-right space-y-5 md:space-y-6 animate-slideUp">
             <div>
-              <span className="inline-block text-brandGold border-b border-brandGold/30 pb-1 mb-1">מנהלת תכנון פנסיוני, פיננסים וביטוחים</span>
+              <span className="inline-block text-brandGold border-b border-brandGold/30 pb-1 mb-1">סוכנת ביטוח, מנהלת תכנון פנסיוני ופיננסי</span>
             </div>
             
             <div className="space-y-2">
