@@ -94,6 +94,7 @@ export default function RootLayout({
                 <h3 className="text-xl font-bold text-white mb-4">מאור זיני - ביטוח ופיננסים</h3>
                 <p className="mb-4">ליווי מקצועי בתחום הביטוח והפיננסים</p>
                 <p>© {new Date().getFullYear()} כל הזכויות שמורות</p>
+                <p className="mt-2 text-sm">נבנה על ידי <a href="https://triroars.co.il" target="_blank" rel="noopener noreferrer" className="hover:text-brandGold">TriRoars</a></p>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-4">מידע נוסף</h3>
