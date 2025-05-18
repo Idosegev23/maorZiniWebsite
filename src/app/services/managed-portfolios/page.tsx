@@ -169,16 +169,16 @@ const ManagedPortfoliosPage = () => {
             
             <div className="mt-12 text-center">
               <h2 className="text-2xl font-bold text-brandBlue mb-6">מעוניינים לבחון אפשרות של תיק השקעות מנוהל?</h2>
-              <p className="mb-8">אשמח לייעוץ ראשוני ללא התחייבות, לבחינת התאמה של תיק מנוהל לצרכים שלכם ולהכוונה בבחירת מנהל תיקים מתאים.</p>
+              <p className="mb-8">אשמח לשיחה ראשונית ללא התחייבות, לבחינת התאמה של תיק מנוהל לצרכים שלכם ולהכוונה בבחירת מנהל תיקים מתאים.</p>
               
               <div className="flex flex-col md:flex-row justify-center gap-4 mb-8">
                 <Button 
                   variant="primary" 
                   href="/contact"
-                  ariaLabel="לתיאום פגישת ייעוץ"
+                  ariaLabel="לתיאום פגישה אישית"
                   className="text-lg py-4 px-8 border-2 border-brandGold hover:bg-transparent hover:text-brandGold shadow-lg"
                 >
-                  לתיאום פגישת ייעוץ
+                  לתיאום פגישה אישית
                 </Button>
                 
                 <Button 

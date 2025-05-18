@@ -52,16 +52,16 @@ export default function FinancialToolsPage() {
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
             <div className="max-w-lg">
-              <h2 className="text-2xl md:text-3xl font-bold text-brandBlue mb-4">רוצה ייעוץ אישי מקצועי?</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-brandBlue mb-4">רוצה פגישה אישית מקצועית?</h2>
               <p className="text-brandGray text-lg mb-6 leading-relaxed">
-                הכלים הדיגיטליים מספקים הערכה כללית בלבד. לתכנון מותאם אישית לצרכים הייחודיים שלך, אשמח להעניק לך ייעוץ מקצועי ואישי.
+                הכלים הדיגיטליים מספקים הערכה כללית בלבד. לתכנון מותאם אישית לצרכים הייחודיים שלך, אשמח להעניק לך שירות מקצועי ואישי.
               </p>
             </div>
             <a 
               href="/contact" 
               className="bg-gradient-to-r from-brandGold to-brandGold/90 hover:from-brandBlue hover:to-brandBlue/90 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center whitespace-nowrap text-lg"
             >
-              לקביעת פגישת ייעוץ
+              לקביעת פגישה אישית
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>

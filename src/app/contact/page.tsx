@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const metadata = {
   title: 'צור קשר | מאור זיני - ביטוח ופיננסים',
-  description: 'צרו קשר עם מאור זיני, מנהלת תכנון פנסיוני, פיננסים וביטוחים מוסמכת. השאירו פרטים לחזרה או התקשרו ישירות לתיאום פגישת ייעוץ.',
+  description: 'צרו קשר עם מאור זיני, סוכנת ביטוח מוסמכת. השאירו פרטים לחזרה או התקשרו ישירות לתיאום פגישה אישית.',
 };
 
 const ContactPage = () => {
@@ -74,10 +74,10 @@ const ContactPage = () => {
               <div className="bg-white p-8 rounded-2xl shadow-md">
                 <h3 className="text-2xl font-bold text-brandBlue mb-6">בואו נקבע פגישה</h3>
                 <p className="text-brandGray mb-6">
-                  הדרך הטובה ביותר להבין את הצרכים שלך היא בפגישה אישית. פגישת הייעוץ הראשונית אינה כרוכה בתשלום וללא התחייבות.
+                  הדרך הטובה ביותר להבין את הצרכים שלך היא בפגישה אישית. הפגישה הראשונית אינה כרוכה בתשלום וללא התחייבות.
                 </p>
                 <a 
-                  href="https://wa.me/972534842700?text=שלום%20מאור,%20אשמח%20לקבוע%20פגישת%20ייעוץ" 
+                  href="https://wa.me/972534842700?text=שלום%20מאור,%20אשמח%20לקבוע%20פגישה" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-green-600 transition-all"

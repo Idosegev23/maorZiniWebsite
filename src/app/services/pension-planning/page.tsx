@@ -150,11 +150,11 @@ const PensionPlanningPage = () => {
                 
                 <Button 
                   variant="secondary"
-                  href="https://wa.me/972534842700" // יש להחליף למספר הטלפון הנכון
-                  ariaLabel="שיחת ייעוץ מהירה ב-WhatsApp"
+                  href="https://wa.me/972534842700"
+                  ariaLabel="שיחה מהירה ב-WhatsApp"
                   className="text-lg py-4 px-8 bg-[#25D366] border-2 border-[#25D366] hover:bg-transparent hover:text-[#25D366] shadow-lg"
                 >
-                  שיחת ייעוץ מהירה
+                  שיחה מהירה
                 </Button>
               </div>
               

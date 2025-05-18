@@ -17,7 +17,7 @@ export default function AboutPage() {
         <div className="container">
           <SectionTitle
             title="אודות מאור זיני"
-            subtitle="מלווה כלכלית. שותפה לדרך. אישה של אנשים."
+            subtitle="סוכנת ביטוח פנסיוני ופיננסי תוך ליווי אישי ומקצועי, שותפה לדרך."
             showUnderline
             rightAligned
             boldSubtitle
@@ -39,13 +39,13 @@ export default function AboutPage() {
             </div>
             <div className="text-right space-y-4">
               <p className="text-lg text-brandGray border-r-2 border-brandGold/60 pr-4">
-                שמי מאור זיני, ואני מלווה לקוחות במסע הכלכלי שלהם כבר יותר מחמש־עשרה שנה.
+                שמי מאור זיני, ואני מלווה לקוחות במסע הכלכלי שלהם כבר יותר מ15 שנה.
                 מאחורי המספרים, המונחים והטפסים – יש אנשים. משפחות. סיפורים.
                 אני כאן בדיוק בשביל האנשים האלו.
               </p>
               
               <p className="text-lg text-brandGray border-r-2 border-brandGold/60 pr-4">
-                מאז 2009 אני עוסקת בייעוץ, ליווי וניהול תיקי ביטוח, פנסיה וחיסכון ללקוחות פרטיים, משפחות ועסקים.
+                מאז 2009 אני עוסקת בליווי וניהול תיקי ביטוח, פנסיה וחיסכון ללקוחות פרטיים, משפחות ועסקים.
                 אבל האמת? אני לא "מוכרת ביטוחים".
                 אני עוזרת לאנשים לקבל החלטות כלכליות שקטות, חכמות ובטוחות – שמתאימות בדיוק להם.
               </p>
@@ -146,7 +146,7 @@ export default function AboutPage() {
             <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
               <h3 className="text-xl font-bold mb-4 text-brandBlue border-r-2 border-brandGold pr-3 text-right">בצד שלך</h3>
               <p className="text-brandGray text-right">
-                אני תמיד בצד שלך – גם כשצריך לייעץ, גם כשצריך להיאבק, ובעיקר – כשצריך מישהי שדואגת באמת.
+                אני תמיד בצד שלך – גם כשצריך להדריך, גם כשצריך להיאבק, ובעיקר – כשצריך מישהי שדואגת באמת.
               </p>
             </div>
           </div>
@@ -181,9 +181,9 @@ export default function AboutPage() {
             </div>
             
             <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
-              <h3 className="text-lg font-bold mb-2 text-brandBlue border-r-2 border-brandGold pr-3 text-right">ייעוץ פנסיוני</h3>
+              <h3 className="text-lg font-bold mb-2 text-brandBlue border-r-2 border-brandGold pr-3 text-right">תכנון פנסיוני</h3>
               <p className="text-brandGray text-right">
-                ייעוץ פנסיוני והכנה לפרישה
+                תכנון פנסיוני והכנה לפרישה
               </p>
             </div>
             

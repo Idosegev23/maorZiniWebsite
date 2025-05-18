@@ -148,10 +148,10 @@ const EducationFundPage = () => {
                 <Button 
                   variant="primary" 
                   href="/contact"
-                  ariaLabel="לתיאום פגישת ייעוץ"
+                  ariaLabel="לתיאום פגישה אישית"
                   className="text-lg py-4 px-8 border-2 border-brandGold hover:bg-transparent hover:text-brandGold shadow-lg"
                 >
-                  לתיאום פגישת ייעוץ
+                  לתיאום פגישה אישית
                 </Button>
                 
                 <Button 

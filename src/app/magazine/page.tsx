@@ -17,7 +17,7 @@ export default function MagazinePage() {
     },
     {
       title: 'בעין משפטית: מארחים את מאור זיני',
-      summary: 'ראיון עם מאור על ייעוץ אישי, תובנות מהשטח ודגשים חשובים.',
+      summary: 'ראיון עם מאור על ליווי אישי, תובנות מהשטח ודגשים חשובים.',
       image: '/images/magazine/maor-interview.jpg',
       slug: 'maor-interview',
       date: '15 מאי 2023'

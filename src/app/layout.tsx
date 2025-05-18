@@ -6,8 +6,8 @@ import Navigation from "../components/common/Navigation";
 import AccessibilityWidget from "../components/accessibility/AccessibilityWidget";
 
 export const metadata: Metadata = {
-  title: "מאור זיני – ביטוח ופיננסים | יועץ פיננסי ופנסיוני מוסמך",
-  description: "מאור זיני, יועץ ביטוח ופיננסים מקצועי עם יותר מ-15 שנות ניסיון. התייעצות אישית, שקיפות מלאה וליווי מקצועי.",
+  title: "מאור זיני – ביטוח ופיננסים | סוכנת ביטוח ופנסיה מוסמכת",
+  description: "מאור זיני, סוכנת ביטוח ופיננסים מקצועית עם יותר מ-15 שנות ניסיון. פגישה אישית, שקיפות מלאה וליווי מקצועי.",
 };
 
 export default function RootLayout({
@@ -92,7 +92,7 @@ export default function RootLayout({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
                 <h3 className="text-xl font-bold text-white mb-4">מאור זיני - ביטוח ופיננסים</h3>
-                <p className="mb-4">ייעוץ וליווי מקצועי בתחום הביטוח והפיננסים</p>
+                <p className="mb-4">ליווי מקצועי בתחום הביטוח והפיננסים</p>
                 <p>© {new Date().getFullYear()} כל הזכויות שמורות</p>
               </div>
               <div>

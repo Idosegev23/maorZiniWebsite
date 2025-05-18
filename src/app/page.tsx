@@ -10,8 +10,8 @@ import ContactForm from '@/components/home/ContactForm';
 import TravelButton from '@/components/common/TravelButton';
 
 export const metadata: Metadata = {
-  title: 'מאור זיני - ביטוח ופיננסים | תכנון פיננסי וייעוץ ביטוחי',
-  description: 'ליווי אישי לבניית עתיד פיננסי בטוח. ייעוץ ביטוח, פנסיה והשקעות ממומחית עם יותר מ-15 שנות ניסיון.',
+  title: 'מאור זיני - ביטוח ופיננסים | תכנון פיננסי וביטוחים',
+  description: 'ליווי אישי לבניית עתיד פיננסי בטוח. ביטוח, פנסיה והשקעות ממומחית עם יותר מ-15 שנות ניסיון.',
 };
 
 export default function Home() {

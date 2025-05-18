@@ -82,7 +82,7 @@ export default function HealthInsurancePage() {
                 <p className="mb-2 font-medium">שב"ן כולל, בין היתר:</p>
                 <ul className="list-disc list-inside text-sm space-y-1.5">
                   <li>טיפולים משלימים (פיזיותרפיה, רפואה אלטרנטיבית)</li>
-                  <li>ייעוץ עם רופאים מומחים</li>
+                  <li>שירות רפואי מומחים</li>
                   <li>השתתפות בתרופות שאינן בסל</li>
                   <li>בדיקות פרטיות מסוימות</li>
                 </ul>

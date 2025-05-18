@@ -146,16 +146,16 @@ const Amendment190Page = () => {
             
             <div className="mt-12 text-center">
               <h2 className="text-2xl font-bold text-brandBlue mb-6">רוצים לבדוק אם תיקון 190 מתאים לכם?</h2>
-              <p className="mb-8">אשמח לפגישת ייעוץ אישית כדי לבחון את האפשרויות העומדות בפניכם ולהתאים פתרון מיטבי לצרכים שלכם.</p>
+              <p className="mb-8">אשמח לפגישה אישית כדי לבחון את האפשרויות העומדות בפניכם ולהתאים פתרון מיטבי לצרכים שלכם.</p>
               
               <div className="flex flex-col md:flex-row justify-center gap-4 mb-8">
                 <Button 
                   variant="primary" 
                   href="/contact"
-                  ariaLabel="לתיאום פגישת ייעוץ"
+                  ariaLabel="לתיאום פגישה אישית"
                   className="text-lg py-4 px-8 border-2 border-brandGold hover:bg-transparent hover:text-brandGold shadow-lg"
                 >
-                  לתיאום פגישת ייעוץ
+                  לתיאום פגישה אישית
                 </Button>
                 
                 <Button 

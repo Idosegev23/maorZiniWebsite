@@ -105,10 +105,10 @@ const PersonalAccidentsPage = () => {
                 <Button 
                   variant="primary" 
                   href="/contact"
-                  ariaLabel="לקביעת שיחת ייעוץ"
+                  ariaLabel="לקביעת שיחה אישית"
                   className="text-lg py-4 px-8 border-2 border-brandGold hover:bg-transparent hover:text-brandGold shadow-lg"
                 >
-                  לקביעת שיחת ייעוץ
+                  לקביעת שיחה אישית
                 </Button>
                 
                 <Button 

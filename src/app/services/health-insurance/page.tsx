@@ -81,7 +81,7 @@ const HealthInsurancePage = () => {
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-semibold text-brandBlue mb-2">חוות דעת שנייה וייעוץ עם רופאים מומחים</h3>
+                  <h3 className="text-xl font-semibold text-brandBlue mb-2">חוות דעת שנייה וליווי עם רופאים מומחים</h3>
                   <p>גישה לרופאים מובילים בתחומם</p>
                 </div>
                 
@@ -107,10 +107,10 @@ const HealthInsurancePage = () => {
                 <Button 
                   variant="primary" 
                   href="/contact"
-                  ariaLabel="שיחת ייעוץ ללא התחייבות"
+                  ariaLabel="שיחה אישית ללא התחייבות"
                   className="text-lg py-4 px-8 border-2 border-brandGold hover:bg-transparent hover:text-brandGold shadow-lg"
                 >
-                  שיחת ייעוץ ללא התחייבות
+                  שיחה אישית ללא התחייבות
                 </Button>
                 
                 <Button 

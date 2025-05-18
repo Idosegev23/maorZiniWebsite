@@ -220,10 +220,10 @@ const ServicesPage = () => {
               <Button 
                 variant="primary" 
                 href="/contact"
-                ariaLabel="לתיאום שיחת ייעוץ"
-                className="text-lg py-4 px-8 bg-brandBlue text-white hover:bg-transparent hover:text-brandBlue border border-brandBlue transition-all shadow-lg"
+                ariaLabel="לתיאום שיחה אישית"
+                className="text-lg py-4 px-8 border-2 border-brandGold hover:bg-transparent hover:text-brandGold shadow-lg"
               >
-                לתיאום שיחת ייעוץ
+                לתיאום שיחה אישית
               </Button>
             </div>
           </div>
