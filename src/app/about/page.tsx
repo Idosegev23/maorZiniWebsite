@@ -10,7 +10,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main dir="rtl" lang="he">
-      <section className="relative bg-white pt-10 pb-16 md:pt-16 md:pb-24">
+      <section className="relative bg-white pt-8 pb-12 md:pt-12 md:pb-16">
         {/* קו דקורטיבי עדין בחלק העליון */}
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brandGold to-transparent"></div>
       
@@ -21,23 +21,23 @@ export default function AboutPage() {
             showUnderline
             rightAligned
             boldSubtitle
-            className="text-right mb-10"
+            className="text-right mb-6"
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-6">
             <div className="relative">
               <Image
                 src="/maorhead.png"
                 alt="מאור זיני"
-                width={300}
-                height={300}
-                className="rounded-2xl  h-auto mx-auto"
+                width={450}
+                height={450}
+                className="rounded-2xl h-auto mx-auto"
                 priority
               />
               {/* אלמנט דקורטיבי מאחורי התמונה */}
-              <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full rounded-2xl bg-gradient-to-br from-brandGold/20 to-brandBlue/10"></div>
+              <div className="absolute -z-10 -bottom-3 -right-3 w-full h-full rounded-2xl bg-gradient-to-br from-brandGold/20 to-brandBlue/10"></div>
             </div>
-            <div className="text-right space-y-6">
+            <div className="text-right space-y-4">
               <p className="text-lg text-brandGray border-r-2 border-brandGold/60 pr-4">
                 שמי מאור זיני, ואני מלווה לקוחות במסע הכלכלי שלהם כבר יותר מחמש־עשרה שנה.
                 מאחורי המספרים, המונחים והטפסים – יש אנשים. משפחות. סיפורים.
