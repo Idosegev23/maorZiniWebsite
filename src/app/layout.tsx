@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 import Navigation from "../components/common/Navigation";
 import AccessibilityWidget from "../components/accessibility/AccessibilityWidget";
-import SchemaOrg, { getOrganizationSchema } from "../components/seo/SchemaOrg";
+import ClientSchemaOrg from "../components/seo/ClientSchemaOrg";
 
 export const metadata: Metadata = {
   title: "מאור זיני – ביטוח ופיננסים | סוכנת ביטוח ופנסיה מוסמכת",
@@ -99,7 +99,7 @@ export default function RootLayout({
       </head>
       <body className="font-heebo antialiased">
         {/* Schema.org */}
-        <SchemaOrg schema={getOrganizationSchema()} />
+        <ClientSchemaOrg />
       
         {/* קישור דילוג לתוכן העיקרי (נגישות) */}
         <a href="#main-content" className="skip-link">

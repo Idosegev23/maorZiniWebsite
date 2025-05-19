@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'דף לא נמצא | מאור זיני - ביטוח ופיננסים',
+  description: 'מצטערים, אך הדף שחיפשת אינו קיים או הוסר.',
+};
 
 export default function NotFound() {
   return (

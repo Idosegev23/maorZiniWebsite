@@ -2,7 +2,7 @@ import Image from 'next/image';
 import SectionTitle from '@/components/common/SectionTitle';
 import Button from '@/components/common/Button';
 import { generateMetadata } from '@/components/seo/Metadata';
-import SchemaOrg, { getOrganizationSchema } from '@/components/seo/SchemaOrg';
+import ClientSchemaOrg from '@/components/seo/ClientSchemaOrg';
 
 export const metadata = generateMetadata({
   title: 'אודות | מאור זיני - ביטוח ופיננסים',
@@ -15,7 +15,7 @@ export const metadata = generateMetadata({
 export default function AboutPage() {
   return (
     <main dir="rtl" lang="he">
-      <SchemaOrg schema={getOrganizationSchema()} />
+      <ClientSchemaOrg />
       
       <section className="relative bg-white pt-8 pb-12 md:pt-12 md:pb-16">
         {/* קו דקורטיבי עדין בחלק העליון */}
