@@ -69,15 +69,17 @@ export default function RootLayout({
               display: block;
               position: absolute;
               top: -40px;
-              right: 0;
-              background: #2563eb;
-              color: white;
+              right: 4px;
+              background: #ffffff;
+              color: #1b2a4e;
+              border: 1px solid #1b2a4e;
               padding: 8px;
               z-index: 100;
               transition: top 0.1s ease-in;
+              border-radius: 4px;
             }
             .skip-link:focus {
-              top: 0;
+              top: 2px;
             }
             /* כפתור נגישות קבוע שמופיע כאשר אין JavaScript */
             .noscript-accessibility {
@@ -102,7 +104,7 @@ export default function RootLayout({
         <ClientSchemaOrg />
       
         {/* קישור דילוג לתוכן העיקרי (נגישות) */}
-        <a href="#main-content" className="skip-link">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:right-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-brandBlue focus:border focus:border-brandBlue focus:shadow-md focus:rounded-md">
           דלג לתוכן העיקרי
         </a>
         

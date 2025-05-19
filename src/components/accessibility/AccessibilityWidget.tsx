@@ -111,7 +111,7 @@ export default function AccessibilityWidget() {
   };
 
   return (
-    <div className="fixed left-6 top-[50%] transform -translate-y-1/2 z-40">
+    <div className="fixed left-6 bottom-24 z-40">
       <button
         onClick={toggleOpen}
         aria-expanded={isOpen}
@@ -122,7 +122,7 @@ export default function AccessibilityWidget() {
       </button>
 
       {isOpen && (
-        <div className="absolute left-16 top-0 w-64 bg-white p-4 rounded-lg shadow-xl" role="dialog" aria-label="אפשרויות נגישות">
+        <div className="absolute left-16 bottom-0 w-64 bg-white p-4 rounded-lg shadow-xl" role="dialog" aria-label="אפשרויות נגישות">
           <button
             onClick={toggleOpen}
             aria-label="סגירת תפריט נגישות"
