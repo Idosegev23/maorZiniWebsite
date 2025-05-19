@@ -4,10 +4,37 @@ import Link from "next/link";
 import "./globals.css";
 import Navigation from "../components/common/Navigation";
 import AccessibilityWidget from "../components/accessibility/AccessibilityWidget";
+import SchemaOrg, { getOrganizationSchema } from "../components/seo/SchemaOrg";
 
 export const metadata: Metadata = {
   title: "מאור זיני – ביטוח ופיננסים | סוכנת ביטוח ופנסיה מוסמכת",
   description: "מאור זיני, סוכנת ביטוח ופיננסים מקצועית עם יותר מ-15 שנות ניסיון. פגישה אישית, שקיפות מלאה וליווי מקצועי.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    title: "מאור זיני – ביטוח ופיננסים | סוכנת ביטוח ופנסיה מוסמכת",
+    description: "מאור זיני, סוכנת ביטוח ופיננסים מקצועית עם יותר מ-15 שנות ניסיון. פגישה אישית, שקיפות מלאה וליווי מקצועי.",
+    url: "https://www.example.co.il",
+    siteName: "מאור זיני - ביטוח ופיננסים",
+    locale: "he_IL",
+    images: [
+      {
+        url: "https://www.example.co.il/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "מאור זיני - ביטוח ופיננסים",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "מאור זיני – ביטוח ופיננסים | סוכנת ביטוח ופנסיה מוסמכת",
+    description: "מאור זיני, סוכנת ביטוח ופיננסים מקצועית עם יותר מ-15 שנות ניסיון. פגישה אישית, שקיפות מלאה וליווי מקצועי.",
+    images: ["https://www.example.co.il/logo.png"],
+  },
 };
 
 export default function RootLayout({
@@ -21,7 +48,6 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#1b2a4e" />
         <meta name="color-scheme" content="light" />
-        <meta name="robots" content="index, follow" />
         
         {/* תגיות נגישות */}
         <meta name="accessibility-control" content="fullKeyboardControl" />
@@ -72,6 +98,9 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="font-heebo antialiased">
+        {/* Schema.org */}
+        <SchemaOrg schema={getOrganizationSchema()} />
+      
         {/* קישור דילוג לתוכן העיקרי (נגישות) */}
         <a href="#main-content" className="skip-link">
           דלג לתוכן העיקרי

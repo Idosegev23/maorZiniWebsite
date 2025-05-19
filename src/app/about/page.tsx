@@ -1,15 +1,22 @@
 import Image from 'next/image';
 import SectionTitle from '@/components/common/SectionTitle';
 import Button from '@/components/common/Button';
+import { generateMetadata } from '@/components/seo/Metadata';
+import SchemaOrg, { getOrganizationSchema } from '@/components/seo/SchemaOrg';
 
-export const metadata = {
+export const metadata = generateMetadata({
   title: 'אודות | מאור זיני - ביטוח ופיננסים',
-  description: 'הכירו את מאור זיני, מלווה כלכלית עם מעל 15 שנות ניסיון. מידע על הרקע המקצועי, הגישה והערכים שלי.',
-};
+  description: 'הכירו את מאור זיני, סוכנת ביטוח מקצועית עם מעל 15 שנות ניסיון. מידע על הרקע המקצועי, הגישה והערכים שלי.',
+  url: 'https://www.example.co.il/about',
+  image: 'https://www.example.co.il/maorhead.png',
+  type: 'profile',
+});
 
 export default function AboutPage() {
   return (
     <main dir="rtl" lang="he">
+      <SchemaOrg schema={getOrganizationSchema()} />
+      
       <section className="relative bg-white pt-8 pb-12 md:pt-12 md:pb-16">
         {/* קו דקורטיבי עדין בחלק העליון */}
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brandGold to-transparent"></div>
