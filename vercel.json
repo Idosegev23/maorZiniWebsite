@@ -7,7 +7,17 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "destination": "https://www.maorz.co.il/$1",
+      "has": [
+        {
+          "type": "host",
+          "value": "maorz.co.il"
+        },
+        {
+          "type": "protocol",
+          "value": "http"
+        }
+      ],
+      "destination": "https://maorz.co.il/:1",
       "permanent": true
     }
   ]
