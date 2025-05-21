@@ -10,17 +10,6 @@
       "has": [
         {
           "type": "host",
-          "value": "maorz.co.il"
-        }
-      ],
-      "permanent": true,
-      "destination": "https://maorz.co.il/$1"
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
           "value": "www.maorz.co.il"
         }
       ],
