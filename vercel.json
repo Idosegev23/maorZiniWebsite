@@ -14,7 +14,7 @@
         }
       ],
       "permanent": true,
-      "destination": "https://maorz.co.il/:1"
+      "destination": "https://maorz.co.il/$1"
     },
     {
       "source": "/(.*)",
@@ -25,7 +25,7 @@
         }
       ],
       "permanent": true,
-      "destination": "https://maorz.co.il/:1"
+      "destination": "https://maorz.co.il/$1"
     }
   ],
   "headers": [
