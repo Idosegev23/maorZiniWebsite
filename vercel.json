@@ -11,14 +11,10 @@
         {
           "type": "host",
           "value": "maorz.co.il"
-        },
-        {
-          "type": "protocol",
-          "value": "http"
         }
       ],
-      "destination": "https://maorz.co.il/:1",
-      "permanent": true
+      "permanent": true,
+      "destination": "https://maorz.co.il/:1"
     },
     {
       "source": "/(.*)",
@@ -26,14 +22,10 @@
         {
           "type": "host",
           "value": "www.maorz.co.il"
-        },
-        {
-          "type": "protocol",
-          "value": "http"
         }
       ],
-      "destination": "https://maorz.co.il/:1",
-      "permanent": true
+      "permanent": true,
+      "destination": "https://maorz.co.il/:1"
     }
   ],
   "headers": [
