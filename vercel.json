@@ -3,5 +3,12 @@
   "buildCommand": "npm run build:vercel",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "outputDirectory": ".next"
-} 
+  "outputDirectory": ".next",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.maorz.co.il/$1",
+      "permanent": true
+    }
+  ]
+}
