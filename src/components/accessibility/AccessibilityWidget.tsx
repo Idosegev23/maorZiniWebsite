@@ -111,7 +111,7 @@ export default function AccessibilityWidget() {
   };
 
   return (
-    <div className="fixed left-6 bottom-24 z-40">
+    <div className="fixed left-6 bottom-56 md:bottom-24 z-40">
       <button
         onClick={toggleOpen}
         aria-expanded={isOpen}

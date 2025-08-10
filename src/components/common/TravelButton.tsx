@@ -12,14 +12,9 @@ const TravelButton = () => {
       <button 
         onClick={() => setIsPopupOpen(true)}
         className="
-          fixed z-50
-          md:h-16 md:px-5 md:flex md:items-center md:justify-start md:gap-3
-          md:rounded-full
-          md:top-1/2 md:-translate-y-1/2 md:right-5
-          sm:bottom-20 sm:right-5 sm:left-auto sm:rounded-xl
-          bottom-0 right-0 left-0 rounded-none
-          flex items-center justify-center gap-2 
-          sm:py-3 sm:px-4 py-3
+          hidden md:flex md:fixed md:z-50
+          md:h-16 md:px-5 md:items-center md:justify-start md:gap-3
+          md:rounded-full md:top-1/2 md:-translate-y-1/2 md:right-5
           bg-brandBlue text-white shadow-lg hover:bg-opacity-90 transition-colors"
         aria-label="רכישת ביטוח חו״ל"
       >

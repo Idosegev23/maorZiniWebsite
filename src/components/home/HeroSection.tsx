@@ -18,6 +18,7 @@ const HeroSection = () => {
                 width={300}
                 height={250}
                 className="rounded-2xl h-auto mx-auto object-contain animate-scaleIn"
+                style={{ height: 'auto', width: 'auto' }}
                 priority
               />
             </div>

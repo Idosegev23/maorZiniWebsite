@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import Navigation from "../components/common/Navigation";
+import MobileDualFooter from "../components/common/MobileDualFooter";
 import AccessibilityWidget from "../components/accessibility/AccessibilityWidget";
 import ClientSchemaOrg from "../components/seo/ClientSchemaOrg";
 
@@ -118,7 +119,7 @@ export default function RootLayout({
           {children}
         </main>
         
-        <footer className="bg-brandBlue text-white py-12">
+        <footer className="bg-brandBlue text-white py-14 pb-28 md:py-12 md:pb-12">
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
@@ -165,8 +166,9 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        <MobileDualFooter />
         
-        <div className="fixed bottom-6 left-6 z-50">
+        <div className="fixed bottom-32 md:bottom-6 left-6 z-50">
           <a 
             href="https://wa.me/972534842700" 
             target="_blank" 

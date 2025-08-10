@@ -59,6 +59,8 @@ const Navigation = () => {
             width={150} 
             height={50} 
             className="h-auto" 
+            style={{ height: 'auto', width: 'auto' }}
+            priority
           />
         </Link>
 
