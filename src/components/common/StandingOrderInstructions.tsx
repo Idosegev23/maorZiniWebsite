@@ -144,11 +144,11 @@ const StandingOrderInstructions: React.FC<Props> = ({ bankId, onClose }) => {
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
       <div className="bg-white rounded-lg p-6 max-w-lg w-full relative" onClick={(e) => e.stopPropagation()}>
-        <h3 className="text-xl font-bold text-brandBlue mb-4">הנחיות להקמת הרשאה בבנק</h3>
+        <h3 className="text-xl font-bold text-brandBlue mb-4">הנחיות להשלמת קופת גמל להשקעה</h3>
         {content()}
         <div className="mt-4 p-3 bg-brandBeige rounded">
           <p className="text-sm text-brandGray">
-            לאחר פתיחת ההרשאה בבנק, יש לשלוח את אישור ה-PDF לכתובת המייל
+            לאחר השלמת התהליך בבנק, יש לשלוח את אישור ה-PDF לכתובת המייל
             {" "}
             <a className="text-brandBlue underline" href="mailto:maor@maorz.co.il">maor@maorz.co.il</a>
             {" "}

@@ -8,6 +8,7 @@ import ArticlesPreview from '@/components/home/ArticlesPreview';
 import FAQSection from '@/components/home/FAQSection';
 import ContactForm from '@/components/home/ContactForm';
 import TravelButton from '@/components/common/TravelButton';
+import StandingOrderButton from '@/components/common/StandingOrderButton';
 
 export const metadata: Metadata = {
   title: 'מאור זיני - ביטוח ופיננסים | תכנון פיננסי וביטוחים',
@@ -27,6 +28,7 @@ export default function Home() {
       <ContactForm />
       
       <TravelButton />
+      <StandingOrderButton />
     </main>
   );
 }

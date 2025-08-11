@@ -179,7 +179,7 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
             onClick={() => setShowUpload(true)}
             className="inline-flex items-center gap-2 bg-brandBlue text-white px-3 py-2 rounded-md text-xs hover:bg-opacity-90"
           >
-            <Upload size={14} /> כבר הקמת הרשאה? העלה אישור
+            <Upload size={14} /> כבר פתחת קופת גמל להשקעה? העלה אישור
           </button>
         </div>
       </div>
@@ -380,9 +380,9 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
         className="w-full bg-brandBlue text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors font-medium disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {isGenerating ? (
-          <span className="inline-flex items-center gap-2"><Loader2 className="animate-spin" size={18} /> שולח טופס...</span>
+          <span className="inline-flex items-center gap-2"><Loader2 className="animate-spin" size={18} /> שולח בקשה...</span>
         ) : (
-          "שלח הרשאה"
+          "שליחת בקשה"
         )}
       </button>
       {showUpload && (

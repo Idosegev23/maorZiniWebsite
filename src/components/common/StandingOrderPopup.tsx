@@ -33,7 +33,6 @@ const insuranceCompanies: InsuranceCompany[] = [
   { id: 'altshuler', name: 'אלטשולר שחם', code: '003', logo: '/logos/altshuler.png' },
   { id: 'clal', name: 'כלל', code: '004', logo: '/logos/clal.png' },
   { id: 'migdal', name: 'מגדל', code: '005', logo: '/logos/migdal.png' },
-  { id: 'hachshara', name: 'הכשרה', code: '006', logo: '/logos/Hachshara_logo.png' },
   { id: 'analyst', name: 'אנליסט', code: '007', logo: '/logos/analyst.png' },
   { id: 'excelence', name: 'אקסלנס', code: '008', logo: '/logos/excellence-logo.webp' },
   { id: 'meitav', name: 'מיטב', code: '009', logo: '/logos/meitav.png' },
@@ -234,7 +233,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
           <ArrowRight size={20} />
         </button>
         <h3 className="text-xl font-bold text-brandBlue">
-          {showInstructions ? 'הוראות המשך תהליך' : 'מילוי הרשאת הוראת קבע'}
+          {showInstructions ? 'הוראות המשך תהליך' : 'מילוי פרטי קופת גמל להשקעה'}
         </h3>
       </div>
       {selectedInsurance && selectedBank && !showInstructions && (
@@ -273,11 +272,11 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
     if (currentStep === 'insurance') return 'בחירת חברת ביטוח';
     if (currentStep === 'bank') return 'בחירת בנק';
     if (currentStep === 'otherBanks') return 'בחירת בנק אחר';
-    return 'מילוי הרשאה להוראת קבע';
+    return 'מילוי פרטי קופת גמל להשקעה';
   };
 
   const getSubtitle = () => {
-    if (showInstructions) return 'עקוב אחר השלבים המפורטים לביצוע ההרשאה';
+    if (showInstructions) return 'עקוב אחר השלבים המפורטים להשלמת הבקשה';
     if (currentStep === 'insurance') return 'בחר את חברת הביטוח שלך';
     if (currentStep === 'bank' || currentStep === 'otherBanks') return 'בחר את הבנק שלך';
     return 'מלא את הפרטים הנדרשים והוסף חתימה';
