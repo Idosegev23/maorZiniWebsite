@@ -52,6 +52,10 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
   const [showUpload, setShowUpload] = useState(false);
   const [collectionDay, setCollectionDay] = useState<string>("");
   const [missingFields, setMissingFields] = useState<string[]>([]);
+  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
+  const [invalidPhone, setInvalidPhone] = useState<boolean>(false);
+
+  const isFieldMissing = (label: string) => missingFields.includes(label);
 
   // מיפוי מועדי גבייה מותריים לכל חברה
   const allowedDays = useMemo<number[]>(() => {
@@ -133,12 +137,26 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
       if (!branchNumber.trim()) currentMissing.push("מספר סניף");
       if (allowedDays.length > 0 && !collectionDay) currentMissing.push("מועד גבייה");
 
-      if (currentMissing.length > 0) {
+      // בדיקות פורמט בסיסיות
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^05\d{8}$/; // טלפון נייד ישראלי בסיסי
+      const hasEmail = email.trim().length > 0;
+      const hasPhone = phone.trim().length > 0;
+
+      const emailIsInvalid = hasEmail && !emailPattern.test(email.trim());
+      const phoneIsInvalid = hasPhone && !phonePattern.test(phone.trim());
+
+      setInvalidEmail(emailIsInvalid);
+      setInvalidPhone(phoneIsInvalid);
+
+      if (currentMissing.length > 0 || emailIsInvalid || phoneIsInvalid) {
         setMissingFields(currentMissing);
         setIsGenerating(false);
         return;
       } else {
         setMissingFields([]);
+        setInvalidEmail(false);
+        setInvalidPhone(false);
       }
 
       // שליחה לשרת שייצר PDF באיכות גבוהה וישלח במייל
@@ -210,11 +228,19 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="block text-sm mb-1">שם פרטי</label>
-            <input value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full border rounded-lg p-2" placeholder="שם פרטי" />
+            <input value={firstName} onChange={(e) => setFirstName(e.target.value)} className={`w-full border rounded-lg p-2 ${isFieldMissing('שם פרטי') ? 'border-red-500' : ''}`} placeholder="שם פרטי" aria-invalid={isFieldMissing('שם פרטי')}
+            />
+            {isFieldMissing('שם פרטי') && (
+              <p className="mt-1 text-xs text-red-600">יש למלא שם פרטי</p>
+            )}
           </div>
           <div>
             <label className="block text-sm mb-1">שם משפחה</label>
-            <input value={lastName} onChange={(e) => setLastName(e.target.value)} className="w-full border rounded-lg p-2" placeholder="שם משפחה" />
+            <input value={lastName} onChange={(e) => setLastName(e.target.value)} className={`w-full border rounded-lg p-2 ${isFieldMissing('שם משפחה') ? 'border-red-500' : ''}`} placeholder="שם משפחה" aria-invalid={isFieldMissing('שם משפחה')}
+            />
+            {isFieldMissing('שם משפחה') && (
+              <p className="mt-1 text-xs text-red-600">יש למלא שם משפחה</p>
+            )}
           </div>
         </div>
         <div>
@@ -232,17 +258,35 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="block text-sm mb-1">מספר ת.ז.</label>
-            <input value={idNumber} onChange={(e) => setIdNumber(e.target.value)} className="w-full border rounded-lg p-2" placeholder="תעודת זהות" />
+            <input value={idNumber} onChange={(e) => setIdNumber(e.target.value)} className={`w-full border rounded-lg p-2 ${isFieldMissing('תעודת זהות') ? 'border-red-500' : ''}`} placeholder="תעודת זהות" aria-invalid={isFieldMissing('תעודת זהות')}
+            />
+            {isFieldMissing('תעודת זהות') && (
+              <p className="mt-1 text-xs text-red-600">יש למלא תעודת זהות</p>
+            )}
           </div>
           <div>
             <label className="block text-sm mb-1">טלפון</label>
-            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full border rounded-lg p-2" placeholder="05XXXXXXXX" />
+            <input value={phone} onChange={(e) => setPhone(e.target.value)} className={`w-full border rounded-lg p-2 ${(isFieldMissing('טלפון') || invalidPhone) ? 'border-red-500' : ''}`} placeholder="05XXXXXXXX" aria-invalid={isFieldMissing('טלפון') || invalidPhone}
+            />
+            {isFieldMissing('טלפון') && (
+              <p className="mt-1 text-xs text-red-600">יש למלא טלפון</p>
+            )}
+            {!isFieldMissing('טלפון') && invalidPhone && (
+              <p className="mt-1 text-xs text-red-600">טלפון לא תקין (פורמט: 05XXXXXXXX)</p>
+            )}
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="block text-sm mb-1">אימייל</label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border rounded-lg p-2" placeholder="name@example.com" />
+            <input value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full border rounded-lg p-2 ${(isFieldMissing('אימייל') || invalidEmail) ? 'border-red-500' : ''}`} placeholder="name@example.com" aria-invalid={isFieldMissing('אימייל') || invalidEmail}
+            />
+            {isFieldMissing('אימייל') && (
+              <p className="mt-1 text-xs text-red-600">יש למלא אימייל</p>
+            )}
+            {!isFieldMissing('אימייל') && invalidEmail && (
+              <p className="mt-1 text-xs text-red-600">אימייל לא תקין</p>
+            )}
           </div>
           <div></div>
         </div>
@@ -253,15 +297,24 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
               בחירת סניף 
               <span className="text-xs text-gray-500 font-normal">(חיפוש חכם)</span>
             </label>
-            <BranchSelector
-              bankCode={bank?.code}
-              onSelect={handleBranchSelect}
-              value={selectedBranch}
-            />
+            <div className={`${isFieldMissing('מספר סניף') ? 'rounded-lg ring-1 ring-red-500 p-1' : ''}`}>
+              <BranchSelector
+                bankCode={bank?.code}
+                onSelect={handleBranchSelect}
+                value={selectedBranch}
+              />
+            </div>
+            {isFieldMissing('מספר סניף') && (
+              <p className="mt-1 text-xs text-red-600">יש לבחור סניף</p>
+            )}
           </div>
           <div className="col-span-2">
             <label className="block text-sm mb-1">מספר חשבון</label>
-            <input value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className="w-full border rounded-lg p-2" placeholder="מס' חשבון" />
+            <input value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className={`w-full border rounded-lg p-2 ${isFieldMissing('מספר חשבון') ? 'border-red-500' : ''}`} placeholder="מס' חשבון" aria-invalid={isFieldMissing('מספר חשבון')}
+            />
+            {isFieldMissing('מספר חשבון') && (
+              <p className="mt-1 text-xs text-red-600">יש למלא מספר חשבון</p>
+            )}
           </div>
         </div>
         
@@ -363,13 +416,17 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
               <select
                 value={collectionDay}
                 onChange={(e) => setCollectionDay(e.target.value)}
-                className="w-full border rounded-lg p-2 bg-white"
+                className={`w-full border rounded-lg p-2 bg-white ${isFieldMissing('מועד גבייה') ? 'border-red-500' : ''}`}
+                aria-invalid={isFieldMissing('מועד גבייה')}
               >
                 <option value="">בחר מועד...</option>
                 {allowedDays.map((d) => (
                   <option key={d} value={String(d)}>{d} לחודש</option>
                 ))}
               </select>
+              {isFieldMissing('מועד גבייה') && (
+                <p className="mt-1 text-xs text-red-600">יש לבחור מועד גבייה</p>
+              )}
             </div>
             <div className="self-end text-xs text-gray-500">
               המערכת תמלא אוטומטית שדות חודש ושנה (תחילת הגבייה) בטופס
