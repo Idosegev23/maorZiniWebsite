@@ -29,15 +29,15 @@ interface Bank {
 
 const insuranceCompanies: InsuranceCompany[] = [
   { id: 'harel', name: 'הראל', code: '001', logo: '/logos/harel_logo.png' },
-  { id: 'menorah', name: 'מנורה מבטחים', code: '002' },
-  { id: 'altshuler', name: 'אלטשולר שחם', code: '003' },
-  { id: 'clal', name: 'כלל', code: '004' },
-  { id: 'migdal', name: 'מגדל', code: '005' },
-  { id: 'hachshara', name: 'הכשרה', code: '006' },
-  { id: 'analyst', name: 'אנליסט', code: '007' },
-  { id: 'excelence', name: 'אקסלנס', code: '008' },
-  { id: 'meitav', name: 'מיטב', code: '009' },
-  { id: 'more', name: 'מור', code: '010' },
+  { id: 'menorah', name: 'מנורה מבטחים', code: '002', logo: '/logos/menora.png' },
+  { id: 'altshuler', name: 'אלטשולר שחם', code: '003', logo: '/logos/altshuler.png' },
+  { id: 'clal', name: 'כלל', code: '004', logo: '/logos/clal.png' },
+  { id: 'migdal', name: 'מגדל', code: '005', logo: '/logos/migdal.png' },
+  { id: 'hachshara', name: 'הכשרה', code: '006', logo: '/logos/Hachshara_logo.png' },
+  { id: 'analyst', name: 'אנליסט', code: '007', logo: '/logos/analyst.png' },
+  { id: 'excelence', name: 'אקסלנס', code: '008', logo: '/logos/excellence-logo.webp' },
+  { id: 'meitav', name: 'מיטב', code: '009', logo: '/logos/meitav.png' },
+  { id: 'more', name: 'מור', code: '010', logo: '/logos/more.png' },
 ];
 
 const mainBanks: Bank[] = [

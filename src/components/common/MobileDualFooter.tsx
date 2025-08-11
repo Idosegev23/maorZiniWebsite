@@ -25,10 +25,10 @@ const MobileDualFooter: React.FC = () => {
           <button
             onClick={() => setIsStandingOpen(true)}
             className="flex items-center justify-center gap-3 py-8 text-brandBlue font-medium hover:bg-brandBeige/40"
-            aria-label="פתיחת הרשאה להו״ק"
+            aria-label="קופות גמל להשקעה"
           >
             <LineChart className="text-brandGold w-6 h-6" />
-            פתיחת הרשאה להו״ק
+            קופות גמל להשקעה
           </button>
         </div>
       </div>
