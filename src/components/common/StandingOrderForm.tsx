@@ -51,6 +51,7 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
   const [isGenerating, setIsGenerating] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
   const [collectionDay, setCollectionDay] = useState<string>("");
+  const [missingFields, setMissingFields] = useState<string[]>([]);
 
   // מיפוי מועדי גבייה מותריים לכל חברה
   const allowedDays = useMemo<number[]>(() => {
@@ -121,6 +122,25 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
         return;
       }
 
+      // בדיקת שדות חובה והצגת פירוט חסרים במקום חסימת הכפתור
+      const currentMissing: string[] = [];
+      if (!firstName.trim()) currentMissing.push("שם פרטי");
+      if (!lastName.trim()) currentMissing.push("שם משפחה");
+      if (!idNumber.trim()) currentMissing.push("תעודת זהות");
+      if (!phone.trim()) currentMissing.push("טלפון");
+      if (!email.trim()) currentMissing.push("אימייל");
+      if (!accountNumber.trim()) currentMissing.push("מספר חשבון");
+      if (!branchNumber.trim()) currentMissing.push("מספר סניף");
+      if (allowedDays.length > 0 && !collectionDay) currentMissing.push("מועד גבייה");
+
+      if (currentMissing.length > 0) {
+        setMissingFields(currentMissing);
+        setIsGenerating(false);
+        return;
+      } else {
+        setMissingFields([]);
+      }
+
       // שליחה לשרת שייצר PDF באיכות גבוהה וישלח במייל
       const fd = new FormData();
       fd.append("type", "order");
@@ -161,7 +181,7 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
       }
     } catch (err) {
       console.error(err);
-      alert("אירעה שגיאה בשליחת הטופס. נסה שוב.");
+      alert("אירעה שגיאה בשליחת הבקשה. נסה שוב.");
       setIsGenerating(false);
     }
   };
@@ -374,9 +394,15 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
         </div>
       </div>
 
+      {missingFields.length > 0 && (
+        <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded p-2">
+          חסרים שדות: {missingFields.join(", ")}
+        </div>
+      )}
+
       <button
         onClick={submitForm}
-        disabled={isGenerating || !hasFormSupport}
+        disabled={isGenerating}
         className="w-full bg-brandBlue text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors font-medium disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {isGenerating ? (
