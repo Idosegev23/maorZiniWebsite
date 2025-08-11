@@ -108,9 +108,8 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
 
   const sigRef = useRef<SignatureCanvas | null>(null);
 
-  const hasFormSupport = useMemo(() => {
-    return ['altshuler', 'clal', 'analyst', 'excelence'].includes(insurance.id);
-  }, [insurance.id]);
+  // תמיכה פתוחה בכל החברות
+  const hasFormSupport = true;
 
   const clearSignature = () => {
     sigRef.current?.clear();
@@ -120,11 +119,7 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
     try {
       setIsGenerating(true);
       
-      if (!hasFormSupport) {
-        alert("כרגע הטפסים הזמינים למילוי הם: אלטשולר שחם, כלל, אנליסט ואקסלנס.");
-        setIsGenerating(false);
-        return;
-      }
+      // כל החברות נתמכות כעת, אין צורך בהגבלה
 
       // בדיקת שדות חובה והצגת פירוט חסרים במקום חסימת הכפתור
       const currentMissing: string[] = [];
