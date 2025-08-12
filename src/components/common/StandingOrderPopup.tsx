@@ -5,13 +5,15 @@ import Image from 'next/image';
 import { X, ArrowRight, ArrowLeft, ExternalLink } from 'lucide-react';
 import StandingOrderForm from './StandingOrderForm';
 import StandingOrderInstructions from './StandingOrderInstructions';
+import MonthlySavingsCalculator from '@/components/tools/MonthlySavingsCalculator';
+import ConfirmationUpload from './ConfirmationUpload';
 
 interface StandingOrderPopupProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-type Step = 'insurance' | 'bank' | 'otherBanks' | 'form';
+type Step = 'intro' | 'insurance' | 'bank' | 'otherBanks' | 'form' | 'calculator' | 'upload';
 
 interface InsuranceCompany {
   id: string;
@@ -58,7 +60,7 @@ const otherBanks: Bank[] = [
 ];
 
 const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose }) => {
-  const [currentStep, setCurrentStep] = useState<Step>('insurance');
+  const [currentStep, setCurrentStep] = useState<Step>('intro');
   const [selectedInsurance, setSelectedInsurance] = useState<InsuranceCompany | null>(null);
   const [selectedBank, setSelectedBank] = useState<Bank | null>(null);
   const [showInstructions, setShowInstructions] = useState(false);
@@ -79,12 +81,41 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
   // איפוס מצב כשהפופאפ נסגר
   useEffect(() => {
     if (!isOpen) {
-      setCurrentStep('insurance');
+      setCurrentStep('intro');
       setSelectedInsurance(null);
       setSelectedBank(null);
       setShowInstructions(false);
     }
   }, [isOpen]);
+  const renderIntroStep = () => (
+    <>
+      <h3 className="text-xl font-bold text-brandBlue mb-6 text-center">מה ברצונך לעשות?</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <button
+          onClick={() => setCurrentStep('insurance')}
+          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+        >
+          <span className="block text-lg font-semibold text-brandBlue mb-1">פתיחה</span>
+          <span className="text-sm text-gray-600">תהליך פתיחת הרשאה וקופה</span>
+        </button>
+        <button
+          onClick={() => setCurrentStep('calculator')}
+          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+        >
+          <span className="block text-lg font-semibold text-brandBlue mb-1">חישוב</span>
+          <span className="text-sm text-gray-600">מחשבון קופת גמל להשקעה</span>
+        </button>
+        <button
+          onClick={() => setCurrentStep('upload')}
+          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+        >
+          <span className="block text-lg font-semibold text-brandBlue mb-1">שליחת מסמכים</span>
+          <span className="text-sm text-gray-600">שלח אישור הקמה/מסמכים</span>
+        </button>
+      </div>
+    </>
+  );
+
 
   if (!isOpen) return null;
 
@@ -254,6 +285,8 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
 
   const renderCurrentStep = () => {
     switch (currentStep) {
+      case 'intro':
+        return renderIntroStep();
       case 'insurance':
         return renderInsuranceStep();
       case 'bank':
@@ -262,13 +295,38 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         return renderOtherBanksStep();
       case 'form':
         return renderFormStep();
+      case 'calculator':
+        return (
+          <div>
+            <div className="flex items-center mb-4">
+              <button onClick={() => setCurrentStep('intro')} className="mr-3 text-gray-500 hover:text-gray-800">
+                <ArrowRight size={20} />
+              </button>
+              <h3 className="text-xl font-bold text-brandBlue">מחשבון קופת גמל להשקעה</h3>
+            </div>
+            <MonthlySavingsCalculator />
+          </div>
+        );
+      case 'upload':
+        return (
+          <div>
+            <div className="flex items-center mb-4">
+              <button onClick={() => setCurrentStep('intro')} className="mr-3 text-gray-500 hover:text-gray-800">
+                <ArrowRight size={20} />
+              </button>
+              <h3 className="text-xl font-bold text-brandBlue">שליחת מסמכים</h3>
+            </div>
+            <ConfirmationUpload inline />
+          </div>
+        );
       default:
-        return renderInsuranceStep();
+        return renderIntroStep();
     }
   };
 
   const getTitle = () => {
     if (showInstructions) return 'הוראות לביצוע';
+    if (currentStep === 'intro') return 'בחירת פעולה';
     if (currentStep === 'insurance') return 'בחירת חברת ביטוח';
     if (currentStep === 'bank') return 'בחירת בנק';
     if (currentStep === 'otherBanks') return 'בחירת בנק אחר';
@@ -277,6 +335,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
 
   const getSubtitle = () => {
     if (showInstructions) return 'עקוב אחר השלבים המפורטים להשלמת הבקשה';
+    if (currentStep === 'intro') return 'בחרו מה תרצו לבצע כעת';
     if (currentStep === 'insurance') return 'בחר את חברת הביטוח שלך';
     if (currentStep === 'bank' || currentStep === 'otherBanks') return 'בחר את הבנק שלך';
     return 'מלא את הפרטים הנדרשים והוסף חתימה';
@@ -318,9 +377,9 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
           {/* Steps indicator */}
           {!showInstructions && (
             <div className="mt-4 flex items-center justify-center gap-2">
-              <div className={`h-1.5 w-16 rounded-full ${currentStep === 'insurance' ? 'bg-brandGold' : 'bg-brandBeige/50'}`}></div>
-              <div className={`h-1.5 w-16 rounded-full ${(currentStep === 'bank' || currentStep === 'otherBanks') ? 'bg-brandGold' : 'bg-brandBeige/50'}`}></div>
-              <div className={`h-1.5 w-16 rounded-full ${currentStep === 'form' ? 'bg-brandGold' : 'bg-brandBeige/50'}`}></div>
+              <div className={`h-1.5 w-16 rounded-full ${currentStep === 'intro' ? 'bg-brandGold' : 'bg-brandBeige/50'}`}></div>
+              <div className={`h-1.5 w-16 rounded-full ${['insurance','bank','otherBanks','form'].includes(currentStep) ? 'bg-brandGold' : 'bg-brandBeige/50'}`}></div>
+              <div className={`h-1.5 w-16 rounded-full ${['calculator','upload'].includes(currentStep) ? 'bg-brandGold' : 'bg-brandBeige/50'}`}></div>
             </div>
           )}
         </div>
