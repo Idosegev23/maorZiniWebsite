@@ -150,6 +150,8 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
       setCurrentStep('bank');
     } else if (currentStep === 'form') {
       setCurrentStep('bank');
+    } else if (currentStep === 'calculator' || currentStep === 'upload') {
+      setCurrentStep('intro');
     }
   };
 
@@ -188,9 +190,6 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
   const renderBankStep = () => (
     <>
       <div className="flex items-center mb-6">
-        <button onClick={handleBackClick} className="mr-3 text-gray-500 hover:text-gray-800">
-          <ArrowRight size={20} />
-        </button>
         <h3 className="text-xl font-bold text-brandBlue">בחר בנק</h3>
       </div>
       
@@ -234,9 +233,6 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
   const renderOtherBanksStep = () => (
     <>
       <div className="flex items-center mb-6">
-        <button onClick={handleBackClick} className="mr-3 text-gray-500 hover:text-gray-800">
-          <ArrowRight size={20} />
-        </button>
         <h3 className="text-xl font-bold text-brandBlue">בחר בנק</h3>
       </div>
 
@@ -260,9 +256,6 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
   const renderFormStep = () => (
     <>
       <div className="flex items-center mb-4">
-        <button onClick={handleBackClick} className="mr-3 text-gray-500 hover:text-gray-800">
-          <ArrowRight size={20} />
-        </button>
         <h3 className="text-xl font-bold text-brandBlue">
           {showInstructions ? 'הוראות המשך תהליך' : 'מילוי פרטי קופת גמל להשקעה'}
         </h3>
@@ -299,9 +292,6 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         return (
           <div>
             <div className="flex items-center mb-4">
-              <button onClick={() => setCurrentStep('intro')} className="mr-3 text-gray-500 hover:text-gray-800">
-                <ArrowRight size={20} />
-              </button>
               <h3 className="text-xl font-bold text-brandBlue">מחשבון קופת גמל להשקעה</h3>
             </div>
             <MonthlySavingsCalculator />
@@ -311,9 +301,6 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         return (
           <div>
             <div className="flex items-center mb-4">
-              <button onClick={() => setCurrentStep('intro')} className="mr-3 text-gray-500 hover:text-gray-800">
-                <ArrowRight size={20} />
-              </button>
               <h3 className="text-xl font-bold text-brandBlue">שליחת מסמכים</h3>
             </div>
             <ConfirmationUpload inline />
