@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     type: "website",
     title: "מאור זיני – ביטוח ופיננסים | סוכנת ביטוח ופנסיה מוסמכת",
     description: "מאור זיני, סוכנת ביטוח ופיננסים מקצועית עם יותר מ-15 שנות ניסיון. פגישה אישית, שקיפות מלאה וליווי מקצועי.",
-    url: "https://www.example.co.il",
+    url: "https://www.maorzini.co.il",
     siteName: "מאור זיני - ביטוח ופיננסים",
     locale: "he_IL",
     images: [
       {
-        url: "https://www.example.co.il/logo.png",
+        url: "https://www.maorzini.co.il/logo.png",
         width: 1200,
         height: 630,
         alt: "מאור זיני - ביטוח ופיננסים",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "מאור זיני – ביטוח ופיננסים | סוכנת ביטוח ופנסיה מוסמכת",
     description: "מאור זיני, סוכנת ביטוח ופיננסים מקצועית עם יותר מ-15 שנות ניסיון. פגישה אישית, שקיפות מלאה וליווי מקצועי.",
-    images: ["https://www.example.co.il/logo.png"],
+    images: ["https://www.maorzini.co.il/logo.png"],
   },
 };
 

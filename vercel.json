@@ -10,11 +10,11 @@
       "has": [
         {
           "type": "host",
-          "value": "www.maorz.co.il"
+          "value": "maorzini.co.il"
         }
       ],
       "permanent": true,
-      "destination": "https://maorz.co.il/$1"
+      "destination": "https://www.maorzini.co.il/$1"
     }
   ],
   "headers": [

@@ -7,8 +7,8 @@ import ClientSchemaOrg from '@/components/seo/ClientSchemaOrg';
 export const metadata = generateMetadata({
   title: 'אודות | מאור זיני - ביטוח ופיננסים',
   description: 'הכירו את מאור זיני, סוכנת ביטוח מקצועית עם מעל 15 שנות ניסיון. מידע על הרקע המקצועי, הגישה והערכים שלי.',
-  url: 'https://www.example.co.il/about',
-  image: 'https://www.example.co.il/maorhead.png',
+  url: 'https://www.maorzini.co.il/about',
+  image: 'https://www.maorzini.co.il/maorhead.png',
   type: 'profile',
 });
 

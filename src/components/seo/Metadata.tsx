@@ -14,8 +14,8 @@ type MetadataProps = {
 export function generateMetadata({
   title = 'מאור זיני - ביטוח ופיננסים בגובה העיניים',
   description = 'ייעוץ אישי לביטוח, פנסיה וחיסכון שמתאים בדיוק לך. תכנון נכון. ליווי מלא. שקט נפשי.',
-  image = 'https://www.example.co.il/logo.png',
-  url = 'https://www.example.co.il',
+  image = 'https://www.maorzini.co.il/logo.png',
+  url = 'https://www.maorzini.co.il',
   type = 'website',
 }: MetadataProps): Metadata {
   return {

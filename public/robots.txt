@@ -1,8 +1,8 @@
 # מאור זיני - ביטוח ופיננסים
-# https://www.example.co.il
+# https://www.maorzini.co.il
 
 User-agent: *
 Allow: /
 
 # מיקום קובץ ה-sitemap
-Sitemap: https://www.example.co.il/sitemap.xml 
+Sitemap: https://www.maorzini.co.il/sitemap.xml

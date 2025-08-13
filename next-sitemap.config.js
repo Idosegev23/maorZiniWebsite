@@ -1,13 +1,13 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.example.co.il',
+  siteUrl: 'https://www.maorzini.co.il',
   generateRobotsTxt: false, // כבר יצרנו קובץ robots.txt ידנית
   outDir: './public',
   generateIndexSitemap: false,
   exclude: ['/404', '/500', '/_app', '/_document', '/_error'],
   alternateRefs: [
     {
-      href: 'https://www.example.co.il',
+      href: 'https://www.maorzini.co.il',
       hreflang: 'he-IL',
     },
   ],
