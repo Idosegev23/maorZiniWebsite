@@ -14,9 +14,9 @@ export const depositAccountsByInsurance: Record<string, DepositAccount[]> = {
     { bankCode: '12', branch: '60', account: '409310' },
   ],
   phoenix: [{ bankCode: '20', branch: '461', account: '586696' }],
-  helman: [{ bankCode: '10', branch: '800', account: '22920657' }],
-  psagot: [{ bankCode: '10', branch: '800', account: '29947922' }],
-  infinity: [{ bankCode: '10', branch: '800', account: '29665452' }],
+  migdal: [{ bankCode: '10', branch: '800', account: '22920657' }],
+  altshuler: [{ bankCode: '10', branch: '800', account: '29947922' }],
+  analyst: [{ bankCode: '10', branch: '800', account: '29665452' }],
 };
 
 export function getDepositAccounts(insuranceId?: string): DepositAccount[] {
