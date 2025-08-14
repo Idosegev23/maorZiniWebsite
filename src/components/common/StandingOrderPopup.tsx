@@ -95,6 +95,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
       <h3 className="text-xl font-bold text-brandBlue mb-6 text-center">מה ברצונך לעשות?</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <button
+          type="button"
           onClick={() => { setOneTimeMode(false); setCurrentStep('insurance'); }}
           className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
         >
@@ -102,6 +103,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
           <span className="text-sm text-gray-600">תהליך פתיחת הרשאה וקופה</span>
         </button>
         <button
+          type="button"
           onClick={() => { setOneTimeMode(true); setCurrentStep('insurance'); }}
           className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
         >
@@ -109,6 +111,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
           <span className="text-sm text-gray-600">בחירת חברה והצגת פרטי העברה</span>
         </button>
         <button
+          type="button"
           onClick={() => setCurrentStep('calculator')}
           className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
         >
@@ -116,6 +119,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
           <span className="text-sm text-gray-600">מחשבון קופת גמל להשקעה</span>
         </button>
         <button
+          type="button"
           onClick={() => setCurrentStep('upload')}
           className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
         >
@@ -218,6 +222,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
       <div className="grid grid-cols-1 gap-3">
         {mainBanks.map((bank) => (
           <button
+            type="button"
             key={bank.id}
             onClick={() => handleBankSelect(bank)}
             className="p-4 border border-gray-200 rounded-lg hover:border-brandGold transition-colors hover:shadow-md text-right flex justify-between items-center"
@@ -230,6 +235,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         ))}
         
         <button
+          type="button"
           onClick={handleOtherBanksClick}
           className="p-4 border border-gray-300 rounded-lg hover:border-brandGold transition-colors hover:shadow-md text-right bg-gray-50"
         >
@@ -323,7 +329,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
             לאחר ביצוע ההפקדה, יש להעביר את אישור ההפקדה דרך "שליחת מסמכים" במסך הראשי או בלחיצה על הכפתור מטה.
           </div>
           <div className="mt-4 flex gap-2">
-            <button onClick={() => setCurrentStep('upload')} className="bg-brandBlue text-white py-2 px-4 rounded-lg">
+            <button type="button" onClick={() => setCurrentStep('upload')} className="bg-brandBlue text-white py-2 px-4 rounded-lg">
               עבור ל"שליחת מסמכים"
             </button>
           </div>
@@ -397,8 +403,9 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         <div className="bg-brandBlue text-white px-6 py-5 border-b-4 border-brandGold">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              {currentStep !== 'insurance' && !showInstructions && (
+              {currentStep !== 'insurance' && currentStep !== 'intro' && !showInstructions && (
                 <button
+                  type="button"
                   onClick={handleBackClick}
                   className="rounded-full bg-white/10 hover:bg-white/20 transition-colors p-2"
                   aria-label="חזור"
@@ -412,6 +419,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
               </div>
             </div>
             <button 
+              type="button"
               onClick={onClose}
               className="rounded-full border border-white/30 hover:bg-white/10 transition-colors p-2"
               aria-label="סגור חלון"
