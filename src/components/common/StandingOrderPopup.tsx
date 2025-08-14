@@ -7,13 +7,14 @@ import StandingOrderForm from './StandingOrderForm';
 import StandingOrderInstructions from './StandingOrderInstructions';
 import MonthlySavingsCalculator from '@/components/tools/MonthlySavingsCalculator';
 import ConfirmationUpload from './ConfirmationUpload';
+import { getDepositAccounts } from './depositAccounts';
 
 interface StandingOrderPopupProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-type Step = 'intro' | 'insurance' | 'bank' | 'otherBanks' | 'form' | 'calculator' | 'upload';
+type Step = 'intro' | 'insurance' | 'bank' | 'otherBanks' | 'form' | 'calculator' | 'upload' | 'oneTimeInfo';
 
 interface InsuranceCompany {
   id: string;
@@ -64,6 +65,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
   const [selectedInsurance, setSelectedInsurance] = useState<InsuranceCompany | null>(null);
   const [selectedBank, setSelectedBank] = useState<Bank | null>(null);
   const [showInstructions, setShowInstructions] = useState(false);
+  const [oneTimeMode, setOneTimeMode] = useState(false);
 
   // מונע גלילה של הרקע כשהפופאפ פתוח
   useEffect(() => {
@@ -85,6 +87,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
       setSelectedInsurance(null);
       setSelectedBank(null);
       setShowInstructions(false);
+      setOneTimeMode(false);
     }
   }, [isOpen]);
   const renderIntroStep = () => (
@@ -92,11 +95,18 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
       <h3 className="text-xl font-bold text-brandBlue mb-6 text-center">מה ברצונך לעשות?</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <button
-          onClick={() => setCurrentStep('insurance')}
+          onClick={() => { setOneTimeMode(false); setCurrentStep('insurance'); }}
           className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
         >
           <span className="block text-lg font-semibold text-brandBlue mb-1">פתיחה</span>
           <span className="text-sm text-gray-600">תהליך פתיחת הרשאה וקופה</span>
+        </button>
+        <button
+          onClick={() => { setOneTimeMode(true); setCurrentStep('insurance'); }}
+          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+        >
+          <span className="block text-lg font-semibold text-brandBlue mb-1">הפקדה חד-פעמית</span>
+          <span className="text-sm text-gray-600">בחירת חברה והצגת פרטי העברה</span>
         </button>
         <button
           onClick={() => setCurrentStep('calculator')}
@@ -121,7 +131,11 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
 
   const handleInsuranceSelect = (insurance: InsuranceCompany) => {
     setSelectedInsurance(insurance);
-    setCurrentStep('bank');
+    if (oneTimeMode) {
+      setCurrentStep('oneTimeInfo');
+    } else {
+      setCurrentStep('bank');
+    }
   };
 
   const handleBankSelect = (bank: Bank) => {
@@ -152,6 +166,8 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
       setCurrentStep('bank');
     } else if (currentStep === 'calculator' || currentStep === 'upload') {
       setCurrentStep('intro');
+    } else if (currentStep === 'oneTimeInfo') {
+      setCurrentStep('insurance');
     }
   };
 
@@ -276,6 +292,46 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
     </>
   );
 
+  const renderOneTimeInfoStep = () => (
+    <>
+      <div className="flex items-center mb-4">
+        <h3 className="text-xl font-bold text-brandBlue">פרטי העברה חד-פעמית</h3>
+      </div>
+      {selectedInsurance && (
+        <div className="p-4 border border-gray-200 rounded-lg bg-white">
+          <div className="mb-3 text-brandBlue font-semibold">{selectedInsurance.name}</div>
+          {(() => {
+            const accounts = getDepositAccounts(selectedInsurance.id);
+            if (!accounts || accounts.length === 0) {
+              return (
+                <div className="text-sm text-brandGray">
+                  אין לנו כרגע פרטי חשבון עבור חברה זו. אנא צרו קשר או בחרו חברה אחרת.
+                </div>
+              );
+            }
+            return (
+              <div className="space-y-1 text-sm text-brandGray">
+                {accounts.map((acc, idx) => (
+                  <div key={idx}>בנק {acc.bankCode}, סניף {acc.branch}, חשבון {acc.account}</div>
+                ))}
+              </div>
+            );
+          })()}
+          <div className="mt-4 p-3 bg-brandBeige rounded text-sm text-brandGray">
+            יש לבצע העברה לחשבון/ות המצוינים לעיל.
+            <br />
+            לאחר ביצוע ההפקדה, יש להעביר את אישור ההפקדה דרך "שליחת מסמכים" במסך הראשי או בלחיצה על הכפתור מטה.
+          </div>
+          <div className="mt-4 flex gap-2">
+            <button onClick={() => setCurrentStep('upload')} className="bg-brandBlue text-white py-2 px-4 rounded-lg">
+              עבור ל"שליחת מסמכים"
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+
   const renderCurrentStep = () => {
     switch (currentStep) {
       case 'intro':
@@ -288,6 +344,8 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         return renderOtherBanksStep();
       case 'form':
         return renderFormStep();
+      case 'oneTimeInfo':
+        return renderOneTimeInfoStep();
       case 'calculator':
         return (
           <div>
@@ -317,6 +375,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
     if (currentStep === 'insurance') return 'בחירת חברת ביטוח';
     if (currentStep === 'bank') return 'בחירת בנק';
     if (currentStep === 'otherBanks') return 'בחירת בנק אחר';
+    if (currentStep === 'oneTimeInfo') return 'פרטי העברה חד-פעמית';
     return 'מילוי פרטי קופת גמל להשקעה';
   };
 

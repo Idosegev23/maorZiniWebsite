@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getDepositAccounts } from './depositAccounts';
 
 interface Props {
   bankId: string;
@@ -45,26 +46,9 @@ const StandingOrderInstructions: React.FC<Props> = ({ bankId, insuranceId, onClo
     </div>
   );
 
-  // פרטי חשבון להפקדה לפי חברת הביטוח (כולל תמיכה בריבוי חשבונות)
-  const depositAccounts: Record<string, Array<{ bankCode: string; branch: string; account: string }>> = {
-    // נתונים שסופקו
-    harel: [{ bankCode: "10", branch: "800", account: "29988119" }],
-    clal: [{ bankCode: "10", branch: "800", account: "29555650" }],
-    menorah: [{ bankCode: "10", branch: "800", account: "21636108" }],
-    more: [
-      { bankCode: "20", branch: "631", account: "680726" },
-      { bankCode: "12", branch: "60", account: "409310" },
-    ],
-    // להמשך הרחבה בעתיד (לא בשימוש כרגע בממשק הקיים)
-    phoenix: [{ bankCode: "20", branch: "461", account: "586696" }],
-    helman: [{ bankCode: "10", branch: "800", account: "22920657" }],
-    psagot: [{ bankCode: "10", branch: "800", account: "29947922" }],
-    infinity: [{ bankCode: "10", branch: "800", account: "29665452" }],
-  };
-
   const renderDepositAccounts = () => {
     if (!insuranceId) return null;
-    const accounts = depositAccounts[insuranceId];
+    const accounts = getDepositAccounts(insuranceId);
     if (!accounts || accounts.length === 0) return null;
     return (
       <Section title="פרטי חשבון להפקדה">
