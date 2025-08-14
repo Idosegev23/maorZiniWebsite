@@ -4,10 +4,11 @@ import React, { useState } from "react";
 
 interface Props {
   bankId: string;
+  insuranceId?: string;
   onClose: () => void;
 }
 
-const StandingOrderInstructions: React.FC<Props> = ({ bankId, onClose }) => {
+const StandingOrderInstructions: React.FC<Props> = ({ bankId, insuranceId, onClose }) => {
   const [fullName, setFullName] = useState("");
   const [idNumber, setIdNumber] = useState("");
   const [note, setNote] = useState("");
@@ -43,6 +44,43 @@ const StandingOrderInstructions: React.FC<Props> = ({ bankId, onClose }) => {
       <div className="text-sm text-brandGray leading-6">{children}</div>
     </div>
   );
+
+  // פרטי חשבון להפקדה לפי חברת הביטוח (כולל תמיכה בריבוי חשבונות)
+  const depositAccounts: Record<string, Array<{ bankCode: string; branch: string; account: string }>> = {
+    // נתונים שסופקו
+    harel: [{ bankCode: "10", branch: "800", account: "29988119" }],
+    clal: [{ bankCode: "10", branch: "800", account: "29555650" }],
+    menorah: [{ bankCode: "10", branch: "800", account: "21636108" }],
+    more: [
+      { bankCode: "20", branch: "631", account: "680726" },
+      { bankCode: "12", branch: "60", account: "409310" },
+    ],
+    // להמשך הרחבה בעתיד (לא בשימוש כרגע בממשק הקיים)
+    phoenix: [{ bankCode: "20", branch: "461", account: "586696" }],
+    helman: [{ bankCode: "10", branch: "800", account: "22920657" }],
+    psagot: [{ bankCode: "10", branch: "800", account: "29947922" }],
+    infinity: [{ bankCode: "10", branch: "800", account: "29665452" }],
+  };
+
+  const renderDepositAccounts = () => {
+    if (!insuranceId) return null;
+    const accounts = depositAccounts[insuranceId];
+    if (!accounts || accounts.length === 0) return null;
+    return (
+      <Section title="פרטי חשבון להפקדה">
+        <div className="space-y-1">
+          {accounts.map((acc, idx) => (
+            <div key={idx} className="text-sm">
+              בנק {acc.bankCode}, סניף {acc.branch}, חשבון {acc.account}
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 text-xs text-gray-500">
+          ניתן להשתמש בפרטים אלו הן להפקדה חד-פעמית והן להוראת קבע.
+        </div>
+      </Section>
+    );
+  };
 
   const content = () => {
     switch (bankId) {
@@ -146,6 +184,7 @@ const StandingOrderInstructions: React.FC<Props> = ({ bankId, onClose }) => {
       <div className="bg-white rounded-lg p-6 max-w-lg w-full relative" onClick={(e) => e.stopPropagation()}>
         <h3 className="text-xl font-bold text-brandBlue mb-4">הנחיות להשלמת קופת גמל להשקעה</h3>
         {content()}
+        {renderDepositAccounts()}
         <div className="mt-4 p-3 bg-brandBeige rounded">
           <p className="text-sm text-brandGray">
             לאחר השלמת התהליך בבנק, יש לשלוח את אישור ה-PDF לכתובת המייל

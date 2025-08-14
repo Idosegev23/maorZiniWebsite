@@ -270,7 +270,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
       )}
       {showInstructions && selectedBank && (
         <div className="p-6">
-          <StandingOrderInstructions bankId={selectedBank.id} onClose={onClose} />
+          <StandingOrderInstructions bankId={selectedBank.id} insuranceId={selectedInsurance?.id} onClose={onClose} />
         </div>
       )}
     </>
