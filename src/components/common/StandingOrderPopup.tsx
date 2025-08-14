@@ -93,11 +93,11 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
   const renderIntroStep = () => (
     <>
       <h3 className="text-xl font-bold text-brandBlue mb-6 text-center">מה ברצונך לעשות?</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
         <button
           type="button"
           onClick={() => { setOneTimeMode(false); setCurrentStep('insurance'); }}
-          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+          className="p-5 min-h-28 h-full border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center flex flex-col items-center justify-center"
         >
           <span className="block text-lg font-semibold text-brandBlue mb-1">פתיחה</span>
           <span className="text-sm text-gray-600">תהליך פתיחת הרשאה וקופה</span>
@@ -105,7 +105,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         <button
           type="button"
           onClick={() => { setOneTimeMode(true); setCurrentStep('insurance'); }}
-          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+          className="p-5 min-h-28 h-full border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center flex flex-col items-center justify-center"
         >
           <span className="block text-lg font-semibold text-brandBlue mb-1">הפקדה חד-פעמית</span>
           <span className="text-sm text-gray-600">בחירת חברה והצגת פרטי העברה</span>
@@ -113,7 +113,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         <button
           type="button"
           onClick={() => setCurrentStep('calculator')}
-          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+          className="p-5 min-h-28 h-full border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center flex flex-col items-center justify-center"
         >
           <span className="block text-lg font-semibold text-brandBlue mb-1">חישוב</span>
           <span className="text-sm text-gray-600">מחשבון קופת גמל להשקעה</span>
@@ -121,7 +121,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
         <button
           type="button"
           onClick={() => setCurrentStep('upload')}
-          className="p-5 border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center"
+          className="p-5 min-h-28 h-full border border-gray-200 rounded-lg hover:border-brandGold hover:shadow-md transition-colors text-center flex flex-col items-center justify-center"
         >
           <span className="block text-lg font-semibold text-brandBlue mb-1">שליחת מסמכים</span>
           <span className="text-sm text-gray-600">שלח אישור הקמה/מסמכים</span>
@@ -396,7 +396,7 @@ const StandingOrderPopup: React.FC<StandingOrderPopupProps> = ({ isOpen, onClose
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
       <div 
-        className="bg-white rounded-xl shadow-2xl w-full max-w-3xl mx-auto relative overflow-hidden" 
+        className="bg-white rounded-xl shadow-2xl w-full max-w-4xl mx-auto relative overflow-hidden" 
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
