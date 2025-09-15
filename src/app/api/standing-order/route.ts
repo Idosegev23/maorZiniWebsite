@@ -7,9 +7,80 @@ import fontkit from "@pdf-lib/fontkit";
 
 export const dynamic = "force-dynamic";
 
+// Rate limiting ל-API הרשאה
+const standingOrderRateLimit = new Map<string, { count: number; lastReset: number }>();
+const MAX_REQUESTS_PER_HOUR = 10; // מקסימום 10 בקשות לשעה
+const HOUR_IN_MS = 60 * 60 * 1000;
+
+function isStandingOrderRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const userLimit = standingOrderRateLimit.get(ip);
+  
+  if (!userLimit || now - userLimit.lastReset > HOUR_IN_MS) {
+    standingOrderRateLimit.set(ip, { count: 1, lastReset: now });
+    return false;
+  }
+  
+  if (userLimit.count >= MAX_REQUESTS_PER_HOUR) {
+    return true;
+  }
+  
+  userLimit.count++;
+  return false;
+}
+
+// ניקוי קלט
+function sanitizeFormInput(input: FormDataEntryValue | null): string {
+  if (!input || typeof input !== 'string') return '';
+  return input.trim().replace(/<script[^>]*>.*?<\/script>/gi, '').replace(/<[^>]*>/g, '');
+}
+
+// בדיקת תקינות שדות
+function validateStandingOrderData(data: Record<string, string>): string | null {
+  const { fullName, idNumber, phone, email, accountNumber, amount } = data;
+  
+  if (!fullName || fullName.length < 2 || fullName.length > 100) {
+    return 'שם מלא לא תקין';
+  }
+  
+  if (!idNumber || !/^\d{9}$/.test(idNumber)) {
+    return 'מספר תעודת זהות חייב להיות 9 ספרות';
+  }
+  
+  if (!phone || !/^0[2-9]\d{7,8}$/.test(phone.replace(/[\s-]/g, ''))) {
+    return 'מספר טלפון לא תקין';
+  }
+  
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return 'כתובת אימייל לא תקינה';
+  }
+  
+  if (!accountNumber || accountNumber.length < 4 || accountNumber.length > 20) {
+    return 'מספר חשבון לא תקין';
+  }
+  
+  if (!amount || isNaN(Number(amount)) || Number(amount) <= 0 || Number(amount) > 50000) {
+    return 'סכום הפקדה חייב להיות בין 1 ל-50,000 שקלים';
+  }
+  
+  return null; // הכל תקין
+}
+
 export async function POST(req: NextRequest) {
   try {
     console.log("🟢 Standing order API called");
+    
+    // Rate limiting
+    const forwarded = req.headers.get('x-forwarded-for');
+    const ip = forwarded ? forwarded.split(',')[0] : req.headers.get('x-real-ip') || 'unknown';
+    
+    if (isStandingOrderRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'יותר מדי בקשות. נסו שוב בעוד שעה.' },
+        { status: 429 }
+      );
+    }
+    
     const formData = await req.formData();
     console.log("🟢 FormData parsed successfully");
 
@@ -48,9 +119,28 @@ export async function POST(req: NextRequest) {
     let html = "";
 
     if (type === "order") {
-      const fullName = String(formData.get("fullName") || "");
-      const firstName = String(formData.get("firstName") || "");
-      const lastName = String(formData.get("lastName") || "");
+      // ניקוי ואימות נתוני הטופס
+      const cleanData = {
+        fullName: sanitizeFormInput(formData.get("fullName")),
+        idNumber: sanitizeFormInput(formData.get("idNumber")),
+        phone: sanitizeFormInput(formData.get("phone")),
+        email: sanitizeFormInput(formData.get("email")),
+        accountNumber: sanitizeFormInput(formData.get("accountNumber")),
+        amount: sanitizeFormInput(formData.get("amount"))
+      };
+      
+      // בדיקת תקינות
+      const validationError = validateStandingOrderData(cleanData);
+      if (validationError) {
+        return NextResponse.json(
+          { error: validationError },
+          { status: 400 }
+        );
+      }
+      
+      const fullName = sanitizeFormInput(formData.get("fullName"));
+      const firstName = sanitizeFormInput(formData.get("firstName"));
+      const lastName = sanitizeFormInput(formData.get("lastName"));
       const idNumber = String(formData.get("idNumber") || "");
       const phone = String(formData.get("phone") || "");
       const email = String(formData.get("email") || "");

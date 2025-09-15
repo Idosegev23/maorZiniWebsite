@@ -2,7 +2,8 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
-import { Loader2, Trash2, Upload } from "lucide-react";
+import Link from "next/link";
+import { Loader2, Trash2, Upload, Shield, AlertTriangle } from "lucide-react";
 import ConfirmationUpload from "./ConfirmationUpload";
 import BranchSelector from "./BranchSelector";
 
@@ -54,6 +55,7 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
   const [missingFields, setMissingFields] = useState<string[]>([]);
   const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
   const [invalidPhone, setInvalidPhone] = useState<boolean>(false);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
   const isFieldMissing = (label: string) => missingFields.includes(label);
 
@@ -121,6 +123,12 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
       
       // כל החברות נתמכות כעת, אין צורך בהגבלה
 
+      if (!privacyAccepted) {
+        alert('יש לאשר את מדיניות הפרטיות לפני השליחה');
+        setIsGenerating(false);
+        return;
+      }
+      
       // בדיקת שדות חובה והצגת פירוט חסרים במקום חסימת הכפתור
       const currentMissing: string[] = [];
       if (!firstName.trim()) currentMissing.push("שם פרטי");
@@ -445,6 +453,57 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
           </button>
         </div>
       </div>
+      
+      {/* אזהרה על מסמכים רגישים */}
+      <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+        <div className="flex items-start gap-3">
+          <AlertTriangle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+          <div className="text-sm text-orange-800">
+            <p className="font-medium mb-1">חשוב לדעת:</p>
+            <p>מומלץ לא לשלוח מסמכים רפואיים רגישים במייל. בקבצים רגישים נשתמש בערוץ מאובטח לפי צורך.</p>
+          </div>
+        </div>
+      </div>
+      
+      {/* הודעת שקיפות ופרטיות */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="flex items-start gap-3">
+          <Shield className="w-5 h-5 text-brandBlue mt-0.5 flex-shrink-0" />
+          <div className="text-sm text-brandBlue leading-relaxed">
+            <p className="font-medium mb-2">שקיפות:</p>
+            <p className="mb-2">
+              הפרטים נדרשים לצורך טיפול בבקשה וחזרה אליך. ייתכן שנעביר מידע לספקי תשתית (אירוח/דוא"ל) 
+              ולגוף ביטוחי רלוונטי לבקשה. לפרטים המלאים וזכויות עיון/תיקון/מחיקה – 
+              ראו <Link href="/privacy-policy" className="underline hover:text-brandGold">מדיניות פרטיות</Link>.
+            </p>
+            <p className="text-xs">
+              פניות בנושא פרטיות: <a href="mailto:maor@maorz.co.il" className="underline">maor@maorz.co.il</a>, 
+              טל' <a href="tel:03-5040049" className="underline">03-5040049</a>.<br/>
+              <strong>מאור זיני - ביטוח ופיננסים</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* תיבת הסכמה לפרטיות */}
+      <div className="mt-4">
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={privacyAccepted}
+            onChange={(e) => setPrivacyAccepted(e.target.checked)}
+            className="mt-1 w-4 h-4 text-brandBlue border-gray-300 rounded focus:ring-brandBlue"
+            required
+          />
+          <span className="text-sm text-brandGray">
+            קראתי והבנתי את{' '}
+            <Link href="/privacy-policy" className="text-brandBlue underline hover:text-brandGold">
+              מדיניות הפרטיות
+            </Link>
+            {' '}ואני מסכים/ה לעיבוד הפרטים לצורך מתן מענה לבקשה
+          </span>
+        </label>
+      </div>
 
       {missingFields.length > 0 && (
         <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded p-2">
@@ -454,8 +513,10 @@ const StandingOrderForm: React.FC<StandingOrderFormProps> = ({ insurance, bank, 
 
       <button
         onClick={submitForm}
-        disabled={isGenerating}
-        className="w-full bg-brandBlue text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors font-medium disabled:opacity-60 disabled:cursor-not-allowed"
+        disabled={isGenerating || !privacyAccepted}
+        className={`w-full bg-brandBlue text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors font-medium ${
+          isGenerating || !privacyAccepted ? 'opacity-60 cursor-not-allowed' : ''
+        }`}
       >
         {isGenerating ? (
           <span className="inline-flex items-center gap-2"><Loader2 className="animate-spin" size={18} /> שולח בקשה...</span>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Moon, Sun, ZoomIn, ZoomOut, Link, X, MousePointer2, Accessibility } from 'lucide-react';
+import { Moon, Sun, ZoomIn, ZoomOut, Link as LinkIcon, X, MousePointer2, Accessibility, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 
 type AccessibilityState = {
   fontSize: number;
@@ -193,7 +194,7 @@ export default function AccessibilityWidget() {
                   settings.highlightLinks ? 'bg-blue-100' : 'bg-gray-100 hover:bg-gray-200'
                 }`}
               >
-                <Link size={20} />
+                <LinkIcon size={20} />
                 <span className="mr-2">הדגשת קישורים</span>
                 <span className="mr-auto">{settings.highlightLinks ? 'פעיל' : 'כבוי'}</span>
               </button>
@@ -220,6 +221,17 @@ export default function AccessibilityWidget() {
               >
                 איפוס הגדרות
               </button>
+            </div>
+            
+            {/* קישור להצהרת נגישות */}
+            <div className="pt-2 border-t border-gray-200">
+              <Link 
+                href="/accessibility" 
+                className="flex items-center w-full p-2 text-brandBlue hover:bg-blue-50 rounded transition-colors"
+              >
+                <ExternalLink size={18} />
+                <span className="mr-2 text-sm">הצהרת נגישות</span>
+              </Link>
             </div>
           </div>
         </div>

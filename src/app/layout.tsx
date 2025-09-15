@@ -127,6 +127,10 @@ export default function RootLayout({
                 <p className="mb-4">ליווי מקצועי בתחום הביטוח והפיננסים</p>
                 <p>© {new Date().getFullYear()} כל הזכויות שמורות</p>
                 <p className="mt-2 text-sm">נבנה על ידי <a href="https://triroars.co.il" target="_blank" rel="noopener noreferrer" className="hover:text-brandGold">TriRoars</a></p>
+                <div className="mt-4 text-sm text-brandBeige">
+                  <p className="mb-1">האתר מיושם בהתאם לתיקון 13 לחוק הגנת הפרטיות</p>
+                  <p>ותקנות אבטחת המידע</p>
+                </div>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-4">מידע נוסף</h3>
@@ -135,16 +139,21 @@ export default function RootLayout({
                   <li><Link href="/services" className="hover:text-brandGold">שירותים</Link></li>
                   <li><Link href="/magazine" className="hover:text-brandGold">מגזין</Link></li>
                   <li><Link href="/contact" className="hover:text-brandGold">צור קשר</Link></li>
+                  <li><Link href="/privacy-policy" className="hover:text-brandGold">מדיניות פרטיות</Link></li>
                   <li><Link href="/accessibility" className="hover:text-brandGold">הצהרת נגישות</Link></li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-4">צור קשר</h3>
                 <ul className="space-y-2">
-                  <li>טלפון: 03-5040049</li>
-                  <li>דוא"ל: maor@maorz.co.il</li>
-                  <li>כתובת: פיק״א 13, ראשון  לציון</li>
+                  <li><a href="tel:03-5040049" className="hover:text-brandGold">טלפון: 03-5040049</a></li>
+                  <li><a href="mailto:maor@maorz.co.il" className="hover:text-brandGold">דוא"ל: maor@maorz.co.il</a></li>
+                  <li>כתובת: פיק״א 13, ראשון לציון</li>
                 </ul>
+                <div className="mt-4 text-sm text-brandBeige">
+                  <p>פניות בנושא פרטיות:</p>
+                  <p><a href="mailto:maor@maorz.co.il" className="hover:text-brandGold underline">maor@maorz.co.il</a></p>
+                </div>
                 <div className="mt-4 flex space-x-reverse space-x-4">
                   <a href="#" aria-label="פייסבוק" className="text-white hover:text-brandGold">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

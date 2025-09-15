@@ -1,15 +1,111 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Rate limiting - פשוט בזיכרון (לא מתאים לפרודקשן עם מספר שרתים)
+const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
+const RATE_LIMIT_MAX_REQUESTS = 5; // מקסימום 5 בקשות
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // בתוך 15 דקות
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const userLimit = rateLimitMap.get(ip);
+  
+  if (!userLimit || now - userLimit.lastReset > RATE_LIMIT_WINDOW_MS) {
+    // איפוס או יצירת רשומה חדשה
+    rateLimitMap.set(ip, { count: 1, lastReset: now });
+    return false;
+  }
+  
+  if (userLimit.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return true;
+  }
+  
+  userLimit.count++;
+  return false;
+}
+
+// פונקציה לניקוי נתונים מקלט משתמש
+function sanitizeInput(input: string): string {
+  if (typeof input !== 'string') return '';
+  return input.trim().replace(/<script[^>]*>.*?<\/script>/gi, '').replace(/<[^>]*>/g, '');
+}
+
+// בדיקת תקינות אימייל
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// בדיקת תקינות טלפון ישראלי
+function isValidPhone(phone: string): boolean {
+  const phoneRegex = /^0[2-9]\d{7,8}$/;
+  return phoneRegex.test(phone.replace(/[\s-]/g, ''));
+}
+
 export async function POST(req: NextRequest) {
   try {
+    // בדיקת Content-Type
+    const contentType = req.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      return NextResponse.json(
+        { error: 'Content-Type חייב להיות application/json' },
+        { status: 400 }
+      );
+    }
+    
+    // קבלת IP לצורך rate limiting
+    const forwarded = req.headers.get('x-forwarded-for');
+    const ip = forwarded ? forwarded.split(',')[0] : req.headers.get('x-real-ip') || 'unknown';
+    
+    // בדיקת rate limiting
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'יותר מדי בקשות. נסו שוב בעוד 15 דקות.' },
+        { status: 429 }
+      );
+    }
+    
     const body = await req.json();
-    const { name, email, phone, message } = body;
+    let { name, email, phone, message } = body;
+    
+    // ניקוי נתונים
+    name = sanitizeInput(name);
+    email = sanitizeInput(email);
+    phone = sanitizeInput(phone);
+    message = sanitizeInput(message);
 
-    // בדיקת תקינות
+    // בדיקות תקינות מורחבות
     if (!name || !email || !phone) {
       return NextResponse.json(
-        { error: "חסרים שדות חובה" },
+        { error: 'חסרים שדות חובה' },
+        { status: 400 }
+      );
+    }
+    
+    if (name.length < 2 || name.length > 100) {
+      return NextResponse.json(
+        { error: 'שם חייב להיות באורך 2-100 תווים' },
+        { status: 400 }
+      );
+    }
+    
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        { error: 'כתובת אימייל לא תקינה' },
+        { status: 400 }
+      );
+    }
+    
+    if (!isValidPhone(phone)) {
+      return NextResponse.json(
+        { error: 'מספר טלפון לא תקין' },
+        { status: 400 }
+      );
+    }
+    
+    if (message && message.length > 2000) {
+      return NextResponse.json(
+        { error: 'הודעה ארוכה מדי (מקסימום 2000 תווים)' },
         { status: 400 }
       );
     }
