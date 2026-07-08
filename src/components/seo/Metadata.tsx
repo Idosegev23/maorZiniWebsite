@@ -31,8 +31,8 @@ export function generateMetadata({
       images: [
         {
           url: image,
-          width: 1200,
-          height: 630,
+          width: 687,
+          height: 742,
           alt: title,
         },
       ],

@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://www.maorzini.co.il/logo.png",
-        width: 1200,
-        height: 630,
+        width: 687,
+        height: 742,
         alt: "מאור זיני - ביטוח ופיננסים",
       },
     ],
