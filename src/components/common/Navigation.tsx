@@ -51,21 +51,20 @@ const Navigation = () => {
   return (
     <div ref={menuRef}>
       {/* לוגו והקישור לדף הבית */}
-      <div className="flex justify-between items-center w-full">
+      <div className="relative flex justify-between items-center w-full">
         <Link href="/" className="flex items-center">
-          <Image 
-            src="/logo.png" 
-            alt="מאור זיני - ביטוח ופיננסים" 
-            width={150} 
-            height={50} 
-            className="h-auto" 
-            style={{ height: 'auto', width: 'auto' }}
+          <Image
+            src="/logo.png"
+            alt="מאור זיני - ביטוח ופיננסים"
+            width={687}
+            height={742}
+            className="h-12 md:h-14 w-auto"
             priority
           />
         </Link>
 
-        {/* תפריט למסך רחב */}
-        <nav className="hidden md:flex space-x-reverse space-x-8">
+        {/* תפריט למסך רחב - ממורכז */}
+        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-reverse space-x-8">
           {navLinks.map((link) => (
             <Link 
               key={link.href} 
@@ -91,7 +90,7 @@ const Navigation = () => {
 
       {/* תפריט נייד */}
       <div 
-        className={`fixed top-[72px] right-0 h-screen w-full bg-white md:hidden transition-transform duration-300 ease-in-out z-40 shadow-lg ${
+        className={`fixed top-[80px] right-0 h-screen w-full bg-white md:hidden transition-transform duration-300 ease-in-out z-40 shadow-lg ${
           isOpen ? 'transform translate-x-0' : 'transform translate-x-full'
         }`}
       >
